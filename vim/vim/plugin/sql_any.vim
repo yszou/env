@@ -1,0 +1,26 @@
+"syn include @MySQLCluster syntax/sql.vim
+"syn region MySQLRegion start=/sql = '''/ms=e+9 end=/'''/me=s-3 contains=@MySQLCluster
+
+function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'  matchgroup='.a:textSnipHl.'  start=/'.a:start.'/ms=s+6 end=/'.a:end.'/  contains=@'.group
+endfunction
+
+au FileType python call TextEnableCodeSnip('sql', "sql = '''", "'''", 'SpecialComment')

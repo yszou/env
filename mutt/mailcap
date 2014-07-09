@@ -1,0 +1,2 @@
+text/html; w3m -dump -I %{charset} -T text/html %s; copiousoutput
+image/*; gpicview %s

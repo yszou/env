@@ -1,0 +1,14 @@
+feature 功能 特征
+凹 ao
+凸 tu
+
+CharField django
+SmallIntegerField django
+IntegerField django
+BigIntegerField django
+primary_key django
+unique django
+
+asynchronous tornado
+engine tornado
+SUPPORTED_METHODS tornado

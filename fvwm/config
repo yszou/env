@@ -1,0 +1,272 @@
+###########
+##  ____________________________
+## (   _________________________)
+##  ) (__  _  _  _    _  
+## (   __)( \/ )( \/\/ )/\/\
+##  ) (    \  /  \    //    \
+## (___)    \/    \/\/(_/\/\_) 2.5.10
+##
+## My personal fvwm2rc file
+##
+########################
+#
+
+#####
+## Set Environment variables
+############
+SetEnv fvwm_icon $./icons
+SetEnv fvwm_wallpapers $./wallpaper
+
+#####
+## Set the image path
+############
+ImagePath $[fvwm_icon]:$[fvwm_icon];.png:$[fvwm_wallpapers]:+
+
+#####
+# Virtual Desktops
+###########
+DesktopSize 3x3
+DesktopName 0 Page
+EdgeScroll 0 0
+EdgeResistance 150  150
+EdgeThickness 1
+
+*FvwmPager: Rows       1
+*FvwmPager: Columns    1
+
+
+#####
+# Mouse and Focus Behavior
+###########
+ClickTime 350
+MoveThreshold 3
+#Style * SloppyFocus, MouseFocusClickRaises
+Style * ClickToFocus,FPReleaseFocus
+EwmhBaseStruts 0 64 0 0
+IgnoreModifiers L25
+
+#####
+# Global Styles and options
+###########
+Style * TileCascadePlacement, EWMHMaximizeIgnoreWorkingArea, EWMHPlacementIgnoreWorkingArea
+Style * NoPPosition, ResizeOpaque
+OpaqueMoveSize -1
+Emulate MWM
+HideGeometryWindow Never
+SnapAttraction 5 SameType Screen
+SnapGrid 3 3
+XorValue 55555
+Style * DecorateTransient, DontRaiseTransient
+Style * DontLowerTransient, StackTransientParent
+#Style * GrabFocusTransientOff
+Style * WindowShadeSteps 20, WindowShadeScrolls
+#SetAnimation  10  -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
+Style * MwmDecor, SlipperyIcon
+Style * IconBox screen w 15 15 -165 -15, IconGrid 3 3, IconFill bottom left
+Style * BorderWidth 0, HandleWidth 4
+
+#####
+# Create the Buttons
+###########
+Colorset 30 fg black, bg #c6c3c6, RootTransparent buffer, Tint #efebef 65
+DestroyModuleConfig LaunchTime: *                                   
+*LaunchTime: Rows 10
+*LaunchTime: Columns 1
+*LaunchTime: Font "xft:文泉驿正黑:size=11"
+*LaunchTime: Colorset 30
+*LaunchTime: Frame 1
+*LaunchTime: (1x2, Center,Swallow "wmcalclock" 'Exec wmcalclock -24 -S -jazz &')
+*LaunchTime: (1x2, Center,Swallow "wmcpuload" `Exec wmcpuload -bl -wp &`)
+*LaunchTime: (1x2, Center,Swallow "wmbattery" `Exec wmbattery -b 1 -w 8 &`)
+*LaunchTime: (1x2, Center,Swallow "FvwmPager" "FvwmPager 0 0")
+
+DestroyModuleConfig Tray: *
+*Tray: Rows 1
+*Tray: Columns 1
+*Tray: Font "xft:文泉驿正黑:size=11"
+*Tray: Colorset 30
+*Tray: Frame 1
+*Tray: (1x1, Center,Swallow "stalonetray" "Exec exec stalonetray --geometry 2x3  -p -i 24")
+  
+#####
+# The Animate
+###########
+DestroyModuleConfig FvwmAnimate: *                                   
+*FvwmAnimate: Delay 25
+*FvwmAnimate: Effect Random
+*FvwmAnimate: Width 3
+
+#####
+# Create the Menu
+###########
+DestroyMenu RootMenu
+AddToMenu RootMenu	"主菜单"	Title
++			"Firefox%firefox_32.png%"	Exec exec firefox
++			"Chrome%chrome_32.png%"	Exec exec google-chrome
++           "Utilities"     Popup UtilitiesMenu
++			""		Nop
++			"Exit%exit_24.png%"	Popup QuitMenu
+
+DestroyMenu UtilitiesMenu
+AddToMenu UtilitiesMenu	"工具"	Title
++			"audacity%audacity_24.png%"	Exec exec audacity
++			"inkscape%inkscape_24.png%"	Exec exec inkscape
++			"gimp%gimp_24.png%"	Exec exec gimp
++			"dia%dia_24.png%"	Exec exec dia
+
+DestroyMenu MoveMenu
+AddToMenu MoveMenu	"移动窗口"	Title
++			"Move To Editor"	MoveToDesk 0 0
++			"Move To Internet"	MoveToDesk 0 1
++			"Move To Document"	MoveToDesk 0 2
+
+DestroyMenu QuitMenu
+AddToMenu QuitMenu	"退出"	Title
++			"退出fvwm%logout_24.png%" Quit
++			"重新启动%reboot_24.png%" Exec pyshut.py restart
++			"关机%shutdown_24.png%"	Exec pyshut.py stop
+
+#####
+# Styles for the Programe
+###########
+Style "Fvwm*"   !Title,FixedSize,FixedPosition,StaysOnBottom,!Closable,StartsOnPage 0 0 0, !Handles
+Style "LaunchTime" NeverFocus
+Style "Tray" NeverFocus   
+#Style "gvim"  EWMHMaximizeUseWorkingArea
+Style * !Title
+Style "rxvt"  EWMHMaximizeUseWorkingArea
+Style "Firefox"  !Borders
+Style "MPlayer"  !Borders
+Style "gvim-server"  StaysOnTop,FixedSize,FixedPosition
+Style "gnome-commander-server"  FixedSize,FixedPosition,PositionPlacement
+ButtonStyle ALL ActiveDown VGradient 8 palevioletred black
+ButtonStyle 1 10 25x40@1 20x40@1 20x80@1 60x80@1 60x65@1 35x65@0 85x65@0 85x10@0 30x10@1 30x65@1
+ButtonStyle 3 16 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 \
+	60x50@0 80x80@0 70x80@0 50x60@0 30x80@0 20x80@0 \
+	20x70@0 40x50@1 20x30@0 20x20@1
+ButtonStyle 2 14 20x20@1 20x70@1 70x70@0 70x20@0 20x20@1 60x60@0 \
+	60x50@0 60x60@0 50x60@0 60x60@0 60x80@0 80x80@0 80x60@0 60x60@0
+MenuStyle * MWM
+MenuStyle * PopupDelayed, PopupDelay 160, Animation, TitleWarp
+MenuStyle * Foreground black, Background gray40
+MenuStyle * ActiveFore White
+MenuStyle * Font "xft:文泉驿正黑:size=12"
+MenuStyle * MenuFace VGradient 64 darkgray MidnightBlue
+
+#####
+# Key_Actions
+###########
+Mouse	1	3	N	Close
+Mouse	1	1	N	Maximize	 100 100
+Mouse	1	2	N	Iconify
+Mouse	1	I	N	Iconify off
+#Mouse	2	A	N	Scroll reverse 
+Mouse	2	WTFS	N	Close
+Mouse	1	R	N	Nop Nop
+Mouse	3	R	N	Menu RootMenu Nop
+Key	F1	R	N	Menu RootMenu Nop
+Mouse	3	A	CM	Menu RootMenu Nop
+Mouse	3	S	N	Menu MoveMenu Nop
+Mouse	1	WTFS	4	MoveWindow
+#Mouse	8	A	N	Close
+Mouse	8	WTFS	N	Resize w-40p w-40p
+Mouse	9	WTFS	N	Close
+
+Key	1	A	4	GotoDeskAndPage 0 0 0
+Key	2	A	4	GotoDeskAndPage 0 1 0
+Key	3	A	4	GotoDeskAndPage 0 2 0
+Key	4	A	4	GotoDeskAndPage 0 0 1
+Key	5	A	4	GotoDeskAndPage 0 1 1
+Key	6	A	4	GotoDeskAndPage 0 2 1
+Key	7	A	4	GotoDeskAndPage 0 0 2
+Key	8	A	4	GotoDeskAndPage 0 1 2
+Key	9	A	4	GotoDeskAndPage 0 2 2
+Key	Grave	A	4	GotoDeskAndPage prev
+
+Key	p	A	4	GotoDesk 0 1
+
+# meta-<direction> to move page
+Key   Left   A   4  Scroll -100 +0
+Key   Right  A   4  Scroll +100 +0
+Key   Up   A   4  Scroll +0 -100
+Key   Down  A   4  Scroll +0 +100
+
+Key	z	A	CM	Scroll reverse 
+Key	Space	A	4	GetFocus
+Key	F4	WTFS	M	Close
+Key	q	W	C	Iconify
+Key	z	A	C	-
+Key	F6	A	C	Maximize 100 100 
+Key	F7	A	C	Maximize 10 10 
+Key	F8	A	C	Layer 1 6
+Key	F5	A	C	Refresh
+#Key	0	A	C	Exec exec amixer set PCM 4%+
+Key	XF86AudioRaiseVolume	A	N	Exec exec amixer set Master 2%+
+
+#Key	9	A	C	Exec exec amixer set PCM 4%-
+Key	XF86AudioLowerVolume	A	N	Exec exec amixer set Master 2%-
+Key	XF86AudioMute	A	N	Exec exec amixer set Master toggle
+Key	F1	A	C	Exec exec terminator --geometry=1200x800+100+100
+Key	F2	A	C	Exec exec gvim -f +set\ ft=txt2tags +source\ ~/.vimrc
+Key	F3	A	C	Exec exec thunar /home/zys
+Key	F4	A	C	Exec exec rxvt -e python
+Key	F1	A	M	Exec exec scrot '/home/zys/.fvwm/wallpaper/now.png' -q 100 -e 'fvwm-root -r $f'
+Key	F2	A	M	Exec exec fvwm-root -r /home/zys/.fvwm/wallpaper/bg.png
+Key	l	A	CM	Exec exec gnome-screensaver-command -l
+Key	Delete	A	CM	All (!Fvwm*) Close
+Key	Print	A	N	Exec exec screenshot
+
+# Stroke
+Mouse 1 TFSW CM StrokeFunc DrawMotion
+Mouse 1 RTFSW SM StrokeFunc DrawMotion
+Stroke N456 0 A CM Maximize True growright 0
+Stroke N654 0 A CM Maximize True growleft 0
+Stroke N258 0 A CM Maximize True 0 growup
+Stroke N852 0 A CM Maximize True 0 growdown
+
+# Group
+DestroyFunc WarpToDesk
+AddToFunc WarpToDesk I Layer 1
++ I WarpToWindow 99 30
++ I Focus
++ I Raise
+
+Key F12 WIFSR S Key F12 A N WindowId $[w.id] WarpToDesk
+Key F11 WIFSR S Key F11 A N WindowId $[w.id] WarpToDesk
+Key F10 WIFSR S Key F10 A N WindowId $[w.id] WarpToDesk
+Key F9 WIFSR S Key F9 A N WindowId $[w.id] WarpToDesk
+
+DestroyFunc GetFocus
+AddToFunc   GetFocus
++ I Next (AcceptsFocus,Raised,CurrentPage,!Iconic) Focus
+
+DestroyFunc MoveWindow
+AddToFunc   MoveWindow
++ M Move
++ H Move
+
+#####
+# Startup Functions
+###########
+DestroyFunc StartFunction
+AddToFunc   StartFunction
+
+#
++ I Module FvwmButtons -g 65x280+0+0 LaunchTime
+#+ I Module FvwmButtons -g 65x400+959+0 LaunchTime
++ I Module FvwmButtons -g 65x75+0+280 Tray
++ I Module FvwmAnimate
+
+DestroyFunc InitFunction
+AddToFunc   InitFunction
+#+ I Exec exec xscreensaver -no-splash
++ I Exec exec fvwm-root -r $[fvwm_wallpapers]/bg.png
++ I Exec init
+
+DestroyFunc RestartFunction
+AddToFunc   RestartFunction
++ I Nop
+
+DestroyFunc ExitFunction
+AddToFunc ExitFunction
++ I All (xscreensaver) Close

@@ -1,0 +1,259 @@
+#FROM http://stevelosh.com/blog/2012/10/the-homely-mutt/
+#sidebar patch: http://www.lunar-linux.org/mutt-sidebar/
+
+set sendmail="python /home/zys/Dropbox/AceSend/sendmail.py"
+set from="YS.Zou <yeshengzou@gmail.com>"
+set charset="utf-8"
+set send_charset="utf-8"
+set weed=yes
+set text_flowed=yes
+charset-hook ^gb2312$ gb18030
+
+
+source ~/.mail_alias
+set alias_file=~/.mail_alias
+set signature="~/.signature"
+set sig_dashes=no #不自动添加--
+
+
+my_hdr Bcc: YS.Zou <yeshengzou+send@gmail.com>
+my_hdr Reply-To: YS.Zou <yeshengzou@gmail.com>
+folder-hook . set record=^
+folder-hook 'Template' set record=''
+
+folder-hook . set sort = threads
+folder-hook . set sort_aux = reverse-last-date-received
+folder-hook inbox set sort = reverse-date-sent
+folder-hook 8-Discuz set sort_aux = date-received
+
+
+#folder-hook . "push <collapse-all>"
+
+send-hook . 'my_hdr From: YS.Zou <yeshengzou@gmail.com>'
+send-hook . 'my_hdr Reply-To: YS.Zou <yeshengzou@gmail.com>'
+#send-hook . 'my_hdr Bcc: YS.Zou <yeshengzou@gmail.com>'
+send-hook . 'set signature="~/.signature"'
+
+
+lists @googlegroups.com @gnome.org
+subscribe @googlegroups.com @gnome.org
+
+
+set editor="gvim -f '+set ft=txt2tags' '+set textwidth=0' '+1,1s/^/#@#\r#@#\r#@#\r#@#\r#@#\r#@#\r/' '+1,6s/#@#//g' -f"
+set query_command="python ~/Dropbox/AceContact/query.py '%s'"
+set indent_str='>'
+set include=yes #回复时是否包含原文
+#set header_cache='/home/zys/Mail/header_cache'
+
+set mbox_type=Maildir           # Maildir格式
+set folder="~/temp/mail"            # 邮件目录
+
+set mask="!^\\.[^.]"            # 忘了干什么的了
+set mbox="+0-inbox"               # 收件箱是 ~/.mail/inbox
+#set record="+0-inbox"             # 发件箱是 ~/.mail/inbox
+set postponed="+1-draft"          # 草稿箱是 ~/.mail/inbox
+set spoolfile="~/temp/mail/0-inbox"   # MDA直接把邮件递到我的收件箱
+
+mailboxes `find ~/temp/mail -maxdepth 1 -mindepth 1 -type d -name "*" -printf "+%f \n"|sort|xargs`
+
+ignore *
+unignore From:
+unignore To
+unignore Cc
+unignore Subject
+unignore User-Agent
+unignore Date
+
+
+
+
+# Sidebar Patch --------------------------------------
+set sidebar_delim   = ' │'
+set sidebar_visible = yes
+set sidebar_width   = 20
+color sidebar_new yellow default
+
+
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+
+# Index View Options ---------------------------------
+set date_format = "%m-%d %H:%M"
+#set index_format = "[%Z]  %D  %-12.12n  (%E%?X?*%X?) %?Y?【%Y】?%s"
+set index_format = "@%-12.12n (%E) %?Y?【%Y】?%-40.40s %D %?X?*%X?"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump=yes                    # don't collapse on an unread message
+set collapse_unread=yes
+#set sort_re                                # thread based on regex
+#set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+
+bind index,pager y edit-label
+# Sidebar Navigation ---------------------------------
+bind index,pager J   sidebar-next
+bind index,pager K     sidebar-prev
+bind index,pager L  sidebar-open
+
+
+
+
+# Mario Holbe suggests:
+macro pager H '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+macro index H '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+
+
+
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager <down> next-line
+bind pager <up> previous-line
+bind pager <right> next-entry
+bind pager <left> previous-entry
+bind pager \Cf next-page
+bind pager \Cb previous-page
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+
+
+bind index <right> display-message
+bind index l display-message
+
+bind index zi collapse-all
+bind index zo collapse-thread
+bind index zc collapse-thread
+
+bind index,pager > next-new-then-unread
+bind index,pager < previous-new-then-unread
+
+bind index g noop
+bind index gg first-entry
+bind index G last-entry
+bind index \Cf next-page
+bind index \Cb previous-page
+bind index zz current-middle
+bind index zt current-top
+bind index zb current-bottom
+bind index,pager r group-reply
+bind index,pager N search-opposite
+
+
+auto_view text/html
+
+
+
+
+
+
+
+# Colours
+
+color normal brightyellow default
+color error red default
+color tilde black default
+color message cyan default
+color markers red white
+color attachment white default
+color search brightmagenta default
+color status brightyellow black
+color indicator brightblack yellow
+color tree yellow default
+
+# Basic monocolor screen
+
+mono bold bold
+mono underline underline
+mono indicator reverse
+mono error bold
+
+# Index
+
+color index red default "~A" # all messages
+color index brightred default "~E" # expired messages
+color index blue default "~N" # new messages
+color index blue default "~O" # old messages
+color index brightmagenta default "~Q" # messages that have been replied to
+color index brightgreen default "~R" # read messages
+color index blue default "~U" # unread messages
+color index blue default "~U~$" # unread, unreferenced messages
+color index brightyellow default "~v" # messages part of a collapsed thread
+color index brightyellow default "~P" # messages from me
+color index cyan default "~p!~F" # messages to me
+color index cyan default "~N~p!~F" # new messages to me
+color index cyan default "~U~p!~F" # unread messages to me
+color index brightgreen default "~R~p!~F" # messages to me
+color index red default "~F" # flagged messages
+color index red default "~F~p" # flagged messages to me
+color index red default "~N~F" # new flagged messages
+color index red default "~N~F~p" # new flagged messages to me
+color index red default "~U~F~p" # new flagged messages to me
+color index black red "~D" # deleted messages
+color index brightcyan default "~v~(!~N)" # collapsed thread with no unread
+color index yellow default "~v~(~N)" # collapsed thread with some unread
+color index green default "~N~v~(~N)" # collapsed thread with unread parent
+color index red black "~v~(~F)!~N" # collapsed thread with flagged, no unread
+color index yellow black "~v~(~F~N)" # collapsed thread with some unread & flagged
+color index green black "~N~v~(~F~N)" # collapsed thread with unread parent & flagged
+color index green black "~N~v~(~F)" # collapsed thread with unread parent, no unread inside, but some flagged
+color index cyan black "~v~(~p)" # collapsed thread with unread parent, no unread inside, some to me directly
+color index yellow red "~v~(~D)" # thread with deleted (doesn't differentiate between all or partial)
+
+# Message Headers
+
+color hdrdefault brightgreen default
+color header blue default "^(From)"
+color header blue default "^(Subject)"
+
+# Body
+
+color quoted blue default
+color quoted1 cyan default
+color quoted2 yellow default
+color quoted3 red default
+color quoted4 brightred default
+
+color signature brightgreen default
+color bold black default
+color underline black default
+color normal default default
+
+# PGP
+
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body brightblack default "^gpg: Good signature .*"
+color body brightyellow default "^gpg: "
+color body brightyellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+
+# URL Regex
+
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+
+
+# Border lines
+
+color body blue default "( *[-+=#*~_]){6,}"

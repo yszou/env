@@ -1,0 +1,211 @@
+"配色方案
+if (has("gui_running"))
+    "colo blue
+    colo oceandeep
+    set cursorline
+else
+    "colo murphy
+    colo oceandeep
+endif
+
+"终端颜色数
+set t_Co=256
+
+"对tagslist的设置
+let Tlist_Use_Right_Window=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_WinWidth=20
+let tlist_tex_settings  = 'tex;s:section;g:graphics;l:label;r:ref;e:eqref'
+
+set tags+=../tags
+
+filetype plugin on
+filetype indent on
+
+set grepprg=grep\ -nHR\ $*
+
+"关闭自动备份
+set nobackup
+
+"查找到末尾是停止，不回到文件开头
+set nowrapscan
+
+"打开行数显示
+set number
+
+"打开查找高亮
+set hlsearch
+
+"自动对新行施以上一行的缩进格式
+set autoindent
+
+"显示输入的命令
+set showcmd
+
+"加入一个判断单词的规则 -
+set iskeyword+=-
+set iskeyword+=_
+
+"减小一个判断单词的规则 _
+"set iskeyword-=_
+
+"匹配括号，跳到前一个括号处
+set showmatch
+
+"设置一个缩进量，4个空格
+set shiftwidth=4
+
+"设置自动断行
+"set textwidth=70
+set textwidth=0
+set formatoptions+=mM
+
+"使上下箭头，在屏幕显示行上只移动一行
+map <Up> gk
+map <Down> gj
+
+"在左侧显示折行的相关指示
+set foldcolumn=1
+
+"不要右边的滚动条和上面的工具栏
+"不要左边的滚动条
+set go-=T
+set go-=L
+set go-=r
+set go-=m
+set go-=e
+
+set fileencodings=utf-8,gb18030
+
+"把tab换成4个space
+set expandtab
+set tabstop=4
+
+"相对行号
+"set relativenumber
+
+
+"载入文件后建立正确的高亮缓存
+autocmd BufEnter * :syntax sync fromstart
+
+"vim的光标表现
+if &term =~ "rxvt-unicode"
+    let &t_EI = "\<Esc>]12;green\x9c"
+    let &t_SI = "\<Esc>]12;white\x9c"
+    silent !echo -e "\e]12;green\x9c"
+endif
+
+"一些自动补全功能
+
+syn match placeHolder "<+.\{-}+>"
+hi link placeHolder Search
+
+inoremap<silent> ) )<C-R>=<SID>Place_holder()<CR>
+inoremap<silent> } }<C-R>=<SID>Place_holder()<CR>
+inoremap<silent> ] ]<C-R>=<SID>Place_holder()<CR>
+inoremap<silent> ' '<C-R>=<SID>Place_holder()<CR>
+inoremap<silent> " "<C-R>=<SID>Place_holder()<CR>
+inoremap<silent> ` `<C-R>=<SID>Place_holder()<CR>
+inoremap<silent> > ><C-R>=<SID>Place_holder()<CR>
+inoremap<silent> : :<C-R>=<SID>Place_holder()<CR>
+inoremap<silent> \| \|<C-R>=<SID>Place_holder()<CR>
+
+function! <SID>Place_holder()
+    let columnNum = col('.')
+    let charCurrent = getline('.')[columnNum - 2]
+    let charBefore = getline('.')[columnNum - 3]
+
+    let temp = ""
+
+    if charCurrent == ')' && charBefore == '('
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == '}' && charBefore == '{'
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == ']' && charBefore == '['
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == ']' && charBefore == '['
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == '`' && charBefore == '`'
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == "'" && charBefore == "'"
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == '"' && charBefore == '"'
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == '>' && charBefore == '<'
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == ':' && charBefore == ':'
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    if charCurrent == '|' && charBefore == '|'
+        let temp = "<++>\<Left>\<Left>\<Left>\<Left>\<Left>"
+        sil!exe 'sil! return"' . temp . '"'
+    endif
+
+    sil!exe 'sil! return"' . temp . '"'
+endfunction
+
+"标签的切换map
+noremap <M-n> :tabnext<CR>
+noremap <M-p> :tabprevious<CR>
+
+"normal 模式下在下边加一行
+noremap <M-o> mzo<Esc>`z
+
+"normal 模式下删除行末的一个字符
+noremap <M-a> mzA<BS><ESC>`z
+
+"normal 模式下删除行首的一个字符
+noremap <M-i> mzI<DEL><ESC>`z<Left>
+
+"定义gf在新的窗口中打开文件
+nmap gf :call AceVimFileFinder(expand("<cfile>"))<CR>
+
+"全角标点
+inoremap <C-c>. 。
+inoremap <C-c>, ， 
+inoremap <C-c>: ：
+inoremap <C-c>; ；
+inoremap <C-c>! ！
+inoremap <C-c>@ ・
+inoremap <C-c>< 《》<++><ESC><Left><Left><Left><Left>i
+inoremap <C-c>> 《》<++><ESC><Left><Left><Left><Left>i
+inoremap <C-c>" “”<++><ESC><Left><Left><Left><Left>i
+
+"F12打开五笔的码表方便编辑
+nmap <F12> :new /home/zys/.vim/plugin/vimim_wubi.txt<CR>
+
+"F11打开变量名补全码表
+nmap <F11> :new /home/zys/.vim/plugin/var_names.txt<CR>
+
+nmap <F10> :new /home/zys/Dropbox/note/hand.t2t<CR>
+imap <C-F10> <ESC>:edit /home/zys/Dropbox/note/hand.t2t<CR>
+nmap <C-F10> <ESC>:edit /home/zys/Dropbox/note/hand.t2t<CR>
+
+"打开拼写检查
+"setlocal spell spelllang=en
