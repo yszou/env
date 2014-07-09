@@ -1,0 +1,21 @@
+# Created by newuser for 4.3.10
+
+#命令提示符 {{{
+RPROMPT=$(echo '%{\033[31m%}%D %T%{\033[m%}')
+PROMPT=$(echo '%{\033[36m%}%n%{\033[35m%}@%{\033[34m%}%M%{\033[30m%}:%{\033[33m%}%/ %{\033[01;31m%}>%{\033[33m%}>%{\033[34m%}>%{\033[m%} ')
+#}}}
+
+
+#标题栏、任务栏样式{{{
+case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)
+  precmd () { print -Pn "\e]0;%n@%M//%/\a" }
+  preexec () { print -Pn "\e]0;%n@%M//%/\ $1\a" }
+  ;;
+esac
+#}}}
+#
+
+
+#命令别名 {{{
+alias ls='ls --color'
+#}}}
