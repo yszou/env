@@ -16,6 +16,7 @@ RUN apt-get update && \
 
 RUN apt-get install -y \
     language-pack-zh-hans \
+    man \
     gcc \
     g++ \
     zlib1g-dev \
