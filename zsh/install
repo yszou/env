@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cp zshrc ~/.zshrc
+
+echo '[zsh] successfully'

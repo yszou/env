@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm -rf ~/.vim
+cp -r vim ~/.vim
+cp vimrc ~/.vimrc
+cp gvimrc ~/.gvimrc
+
+echo '[vim] successfully'
