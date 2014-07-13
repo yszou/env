@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
+ADD run /root/run
 ADD sources.list /etc/apt/sources.list
 ADD id_rsa.pub /tmp/pubkey
 ADD requirements /root/requirements
@@ -34,6 +35,7 @@ RUN apt-get install -y \
     libpq-dev \
     libyaml-dev \
     libffi-dev \
+    libreadline6-dev \
     python2.7 \
     python-dev \
     python-pip \
@@ -67,4 +69,8 @@ RUN mkdir -p /root/src && \
 
 RUN sed -i 's/\/root:\/bin\/bash/\/root:\/bin\/zsh/' /etc/passwd
 
-CMD ["/usr/sbin/sshd", "-D"]
+RUN rm -rf ~/.ssh/id_rsa && \
+    rm -rf ~/.ssh/id_rsa.pub && \
+    ssh-keygen -t rsa -f /root/.ssh/id_rsa -N '' -q
+
+CMD ["bash", "/root/run"]

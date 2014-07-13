@@ -1,0 +1,4 @@
+#!/bin/bash
+
+su postgres -c "/opt/postgresql/bin/pg_ctl -D /home/postgres/pg_data -l /home/postgres/pg_log start" && \
+exec /usr/sbin/sshd -D
