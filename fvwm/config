@@ -109,6 +109,7 @@ AddToMenu RootMenu	"主菜单"	Title
 
 DestroyMenu UtilitiesMenu
 AddToMenu UtilitiesMenu	"工具"	Title
++			"mypaint%mypaint_24.png%"	Exec exec mypaint
 +			"audacity%audacity_24.png%"	Exec exec audacity
 +			"inkscape%inkscape_24.png%"	Exec exec inkscape
 +			"gimp%gimp_24.png%"	Exec exec gimp
