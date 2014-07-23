@@ -4,6 +4,7 @@ MAINTAINER YS.Zou <yeshengzou@gmail.com>
 ADD run /root/run
 ADD sources.list /etc/apt/sources.list
 ADD id_rsa.pub /tmp/pubkey
+ADD locale /etc/default/locale
 ADD requirements /root/requirements
 
 RUN mkdir -p /root/.ssh && \
@@ -16,6 +17,7 @@ RUN apt-get update && \
     sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 
 RUN apt-get install -y \
+    language-pack-en-base \
     language-pack-zh-hans \
     man \
     gcc \
@@ -47,7 +49,8 @@ RUN apt-get install -y \
     mysql-client \
     axel \
     ctags \
-    zsh
+    zsh \
+    locate
 
 RUN rm -rf /usr/bin/python && \
     ln -s /usr/bin/python2.7 /usr/bin/python
