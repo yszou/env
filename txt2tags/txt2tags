@@ -139,14 +139,14 @@ else:
 # first file and gui for the second. There is no --no-<action>.
 # --version and --help inside %!options are also odd
 #
-TARGETS  = 'html xhtml sgml dbk tex lout man mgp wiki gwiki doku pmw moin pm6 txt art adoc creole bbcode'.split()
+TARGETS  = 'html xhtml sgml dbk tex lout man mgp wiki gwiki doku pmw moin pm6 txt art adoc creole bbcode enml'.split()
 TARGETS.sort()
 
 FLAGS    = {'headers'    :1 , 'enum-title' :0 , 'mask-email' :0 ,
             'toc-only'   :0 , 'toc'        :0 , 'rc'         :1 ,
             'css-sugar'  :0 , 'css-suggar' :0 , 'css-inside' :0 ,
             'quiet'      :0 , 'slides'     :0 ,
-            'mathfax'    :0 , 'prettyprint':0 , 'google-analytics': 0,
+            'mathfax'    :0 , 'google-analytics': 0,
             'disqus'     :0}
 OPTIONS  = {'target'     :'', 'toc-level'  :3 , 'style'      :'',
             'infile'     :'', 'outfile'    :'', 'encoding'   :'',
@@ -185,6 +185,7 @@ TARGET_NAMES = {
   'adoc'   : _('AsciiDoc document'),
   'creole' : _('Creole 1.0 document'),
   'bbcode' : _('BBCode document'),
+  'enml' : _('Evernote document'),
 }
 
 DEBUG = 0     # do not edit here, please use --debug
@@ -359,7 +360,7 @@ Fake template to respect the general process.
 <meta name="author" content="Yesheng Zou,YS.Zou,邹业盛"/>
 <link rel="stylesheet" type="text/css" href="%(STYLE)s" />
 </head>
-<body onload="prettyPrint()" style=" margin: 0px; padding: 0px; background-color: #e0e0e0; font-family: Arial,Helvetica,sans-serif; ">
+<body style=" margin: 0px; padding: 0px; background-color: #e0e0e0; font-family: Arial,Helvetica,sans-serif; ">
 <div style=" width: 800px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; ">
 
 <h1 style=" color: black; letter-spacing: 0.2em; text-align: center; font-size: x-large; font-weight: bold; margin: 30px auto 30px auto; ">%(HEADER1)s</h1>
@@ -578,7 +579,10 @@ r"""\documentclass[twoside]{article}
 %(HEADER3)s
 """,
     'bbcode':  """\
-"""
+""",
+    'enml':  """<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
+<en-note>
+""",
 # @SysInclude { tbl }                   # Tables support
 # setup: @MakeContents { Yes }          # show TOC
 # setup: @SectionGap                    # break page at each section
@@ -705,8 +709,8 @@ def getTags(config):
         'title4'               : '~A~<H4>\a</H4>' ,
         'title5'               : '~A~<H5>\a</H5>' ,
         'anchor'               : '<A NAME="\a"></A>\n',
-        #'blockVerbOpen'        : '<PRE STYLE=" white-space: pre-wrap; word-wrap: break-word; border-left: 5px solid #999; font-size: small; line-height: 1.5em; padding: 5px;" class="prettyprint lang-\a">'          ,
-        'blockVerbOpen'        : '<PRE STYLE=" background-color: white; font-size: small; line-height: 1.5em; padding: 0 15px 0 15px; margin: 0;" class="prettyprint lang-\a">'          ,
+        #'blockVerbOpen'        : '<PRE STYLE=" white-space: pre-wrap; word-wrap: break-word; border-left: 5px solid #999; font-size: small; line-height: 1.5em; padding: 5px;" class="lang-\a">'          ,
+        'blockVerbOpen'        : '<PRE STYLE=" background-color: white; font-size: small; line-height: 1.5em; padding: 0 15px 0 15px; margin: 0;" class="lang-\a">'          ,
         'blockVerbClose'       : '</PRE>'         ,
         'blockQuoteOpen'       : '<PRE STYLE="margin: 5px 50px; padding: 0px 5px; border-left: 5px solid #999; line-height: 1.6em; color: gray;">'   ,
         'blockQuoteClose'      : '</PRE>'  ,
@@ -1472,9 +1476,82 @@ def getTags(config):
         'tableCellClose' : '[/td]' ,
         'tableTitleCellOpen' : '[th]' ,
         'tableTitleCellClose' : '[/th]' ,
-        'blockVerbOpen'        : '[hr "prettyprint lang-\a" style=""]'          ,
-        'blockVerbClose'       : '[hr]'         ,
-    }
+        'blockVerbOpen'        : '[hr "lang-\a" style=""]' ,
+        'blockVerbClose'       : '[hr]' ,
+    },
+
+    'enml': {
+        'paragraphOpen'        : '<p style="margin: 15px 0;">'            ,
+        'paragraphClose'       : '</p>'           ,
+        'title1'               : '~A~<h1 style=" padding: 4px; line-height: 1.3em; margin: 50px auto; font-size: 22px; border-bottom: 1px solid; clear: both;">\a</h1>' ,
+
+        'title2'               : '~A~<h2 style=" padding: 2px; margin: 25px auto; font-size: 20px;">\a</h2>' ,
+        'title3'               : '~A~<h3 style=" font-size: 17px; margin: 0 auto; padding: 2px;">\a</h3>' ,
+        'title4'               : '~A~<h4>\a</h4>' ,
+        'title5'               : '~A~<h5>\a</h5>' ,
+        'anchor'               : '<a name="\a"></a>\n',
+        #'blockVerbOpen'        : '<PRE style=" white-space: pre-wrap; word-wrap: break-word; border-left: 5px solid #999; font-size: small; line-height: 1.5em; padding: 5px;" class="lang-\a">'          ,
+        'blockVerbOpen'        : '<pre style=" background-color: white; font-size: small; line-height: 1.5em; padding: 0 15px 0 15px; margin: 0;" class="lang-\a">'          ,
+        'blockVerbClose'       : '</pre>'         ,
+        'blockQuoteOpen'       : '<pre style="margin: 5px 50px; padding: 0px 5px; border-left: 5px solid #999; line-height: 1.6em; color: gray;">'   ,
+        'blockQuoteClose'      : '</pre>'  ,
+        'fontMonoOpen'         : '<code style="margin: auto 3px; color: #228b22; font-family: monospace; ">'         ,
+        'fontMonoClose'        : '</code>'        ,
+        'fontBoldOpen'         : '<strong style=" color: red; font-weight: normal; ">'            ,
+        'fontBoldClose'        : '</strong>'           ,
+        'fontItalicOpen'       : '<em style=" color: #D75100; font-style: normal; ">'         ,
+        'fontItalicClose'      : '</em>'           ,
+        'fontUnderlineOpen'    : '<u>'            ,
+        'fontUnderlineClose'   : '</u>'           ,
+        'fontStrikeOpen'       : '<s>'            ,
+        'fontStrikeClose'      : '</s>'           ,
+        'listOpen'             : '<ul style="line-height: 1.6em; padding: 0px; padding-left: 20px; margin: auto 30px;">'           ,
+        'listClose'            : '</ul>'          ,
+        'listItemOpen'         : '<li>'           ,
+        'numlistOpen'          : '<ol style="line-height: 1.6em; padding: 0px; padding-left: 20px; margin: auto 30px;">'           ,
+        'numlistClose'         : '</ol>'          ,
+        'numlistItemOpen'      : '<li>'           ,
+        'deflistOpen'          : '<dl style="font-size: 15px; margin: 10px auto; padding: 10px;">'           ,
+        'deflistClose'         : '</dl>'          ,
+        'deflistItem1Open'     : '<dt style="padding-left: 5px; margin: 5px auto;">'           ,
+        'deflistItem1Close'    : '</dt>'          ,
+        'deflistItem2Open'     : '<dd style="margin-left: 30px;">'           ,
+        'bar1'                 : '<hr style=" border-top: 1px solid gray; margin: 30px auto;" />',
+        'bar2'                 : '<div style="page-break-after:always;"></div>',
+        'url'                  : '<a href="\a" style="color: #0184b7; text-decoration: none">\a</a>'        ,
+        'urlMark'              : '<a href="\a" style="color: #0184b7; text-decoration: none">\a</a>'        ,
+        'email'                : '<a href="mailto:\a" style="color: #0184b7; text-decoration: none">\a</a>' ,
+        'emailMark'            : '<a href="mailto:\a" style="color: #0184b7; text-decoration: none">\a</a>' ,
+        'img'                  : '<img~A~ src="\a" alt="" style="border: 1px solid black;">',
+        '_imgAlignLeft'        : ' align="left"'  ,
+        '_imgAlignCenter'      : ' align="middle"',
+        '_imgAlignRight'       : ' align="right"' ,
+        'tableOpen'            : '<table~A~~B~ cellpadding="4" style=" border: 1px solid; border-collapse: collapse; margin: 20px auto; line-height: 1.4em; ">',
+        'tableClose'           : '</table>'       ,
+        'tableRowOpen'         : '<tr>'           ,
+        'tableRowClose'        : '</tr>'          ,
+        'tableCellOpen'        : '<td~A~~S~ style=" padding: 3px 10px;">'     ,
+        'tableCellClose'       : '</td>'          ,
+        'tableTitleCellOpen'   : '<th~S~ style=" font-weight: bold; text-align: center; padding: 3px 10px;">'        ,
+        'tableTitleCellClose'  : '</th>'          ,
+        '_tableBorder'         : ' border="1"'    ,
+        '_tableAlignCenter'    : ' align="center"',
+        '_tableCellAlignRight' : ' align="right"' ,
+        '_tableCellAlignCenter': ' align="center"',
+        '_tableCellColSpan'    : ' colspan="\a"'  ,
+        'cssOpen'              : '<style TYPE="text/css">',
+        'cssClose'             : '</style>'       ,
+        'comment'              : '<!-- \a -->'    ,
+        'EOD'                  : '</en-note>' ,
+        'listItemClose'        : '</li>'          ,
+        'numlistItemClose'     : '</li>'          ,
+        'deflistItem2Close'    : '</dd>'          ,
+        'bar1'                 : '<hr style=" border-top: 1px solid gray; margin: 30px auto;" />',
+        'bar2'                 : '<div style="page-break-after:always;"></div>',
+        'anchor'               : '<a name="\a"></a>\n',
+        'img'                  : '<img~A~ src="\a" alt="" style="border: 1px solid black;"/>',
+    },
+
     }
     
     # Exceptions for --css-sugar
@@ -1974,10 +2051,42 @@ def getRules(config):
             'blanksaroundbar':1,
             'blanksaroundtitle':1,
         },
+        'enml': {
+            'indentverbblock':1,
+            'linkable':1,
+            'stylable':1,
+            'escapeurl':1,
+            'imglinkable':1,
+            'imgalignable':1,
+            'imgasdefterm':1,
+            'autonumberlist':1,
+            'spacedlistitem':1,
+            'parainsidelist':1,
+            'tableable':1,
+            'tablecellstrip':1,
+            'breaktablecell':1,
+            'breaktablelineopen':1,
+            'keeplistindent':1,
+            'keepquoteindent':1,
+            'barinsidequote':1,
+            'autotocwithbars':1,
+            'tablecellspannable':1,
+            'tablecellaligntype':'cell',
+            # 'blanksaroundpara':1,
+            'blanksaroundverb':1,
+            # 'blanksaroundquote':1,
+            'blanksaroundlist':1,
+            'blanksaroundnumlist':1,
+            'blanksarounddeflist':1,
+            'blanksaroundtable':1,
+            'blanksaroundbar':1,
+            'blanksaroundtitle':1,
+            'blanksaroundnumtitle':1,
+        },
     }
     
     # Exceptions for --css-sugar
-    if config['css-sugar'] and config['target'] in ('html','xhtml'):
+    if config['css-sugar'] and config['target'] in ('html','xhtml','enml'):
         rules_bank['html']['indentverbblock'] = 0
         rules_bank['html']['autotocwithbars'] = 0
     
@@ -3959,7 +4068,7 @@ class BlockMaster:
         # Needed because <center> can't appear inside <p>
         try:
             if len(lines) == 1 and \
-               TARGET in ('html', 'xhtml') and \
+               TARGET in ('html', 'xhtml', 'enml') and \
                re.match('^\s*<center>.*</center>\s*$', lines[0]):
                 result = [lines[0]]
         except: pass
@@ -3998,7 +4107,7 @@ class BlockMaster:
         if self._should_add_blank_line('after', 'verb'): result.append('')
 
         #ZYS
-        if CONF['target'] in ['xhtml', 'html', 'bbcode']:
+        if CONF['target'] in ['xhtml', 'html', 'bbcode', 'enml']:
             #使用paygment格式化代码
 
 
@@ -4008,7 +4117,7 @@ class BlockMaster:
                 result.pop()
 
             try:
-                type = re.findall('prettyprint lang-(.*?)"', result[0])[0]
+                type = re.findall('lang-(.*?)"', result[0])[0]
             except IndexError:
                 type = ''
 
@@ -4165,6 +4274,7 @@ class BlockMaster:
                 'style': '',
                 'noclasses': True,
                 'prestyles': style,
+                'cssclass': '',
                 'linenos': 'inline' if code_line_count > 9999 else False,
             }
 
@@ -4866,25 +4976,11 @@ def doFooter(config):
 </script>
     '''
 
-    prettyprint = '''
-<link href="http://zouyesheng.com/static/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="http://zouyesheng.com/static/google-code-prettify/prettify.js"></script>
-    '''
-
-    non_prettyprint = '''
-<script type="text/javascript">var prettyPrint = function(){}</script>
-    '''
-
     # No footer. The --no-headers option hides header AND footer
     if not config['headers']:
         return []
 
     if config['target'] in ['xhtml', 'html']:
-        if config.get('prettyprint', 0):
-            ret.append(prettyprint)
-        else:
-            ret.append(non_prettyprint)
-
         if config.get('disqus', 0):
             id = config['sourcefile'].split('/')[-1].split('.')
             id = '.'.join(id[0:-1])
@@ -4923,7 +5019,7 @@ def doFooter(config):
 def doEscape(target,txt):
     "Target-specific special escapes. Apply *before* insert any tag."
     tmpmask = 'vvvvThisEscapingSuxvvvv'
-    if target in ('html','sgml','xhtml','dbk'):
+    if target in ('html','sgml','xhtml','dbk', 'enml'):
         txt = re.sub('&','&amp;',txt)
         txt = re.sub('<','&lt;',txt)
         txt = re.sub('>','&gt;',txt)
@@ -5332,7 +5428,7 @@ def parse_images(line):
                 tag = regex['_imgAlign'].sub(align_tag, tag, 1)
                 
             # Dirty fix to allow centered solo images
-            if align == 'center' and TARGET in ('html','xhtml'):
+            if align == 'center' and TARGET in ('html','xhtml', 'enml'):
                 rest = regex['img'].sub('',line,1)
                 if re.match('^\s+$', rest):
                     tag = "<center>%s</center>" %tag
