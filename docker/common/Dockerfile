@@ -50,7 +50,8 @@ RUN apt-get install -y \
     axel \
     ctags \
     zsh \
-    locate
+    locate \
+    telnet
 
 RUN rm -rf /usr/bin/python && \
     ln -s /usr/bin/python2.7 /usr/bin/python
