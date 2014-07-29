@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -rf ~/.fvwm
+mkdir ~/.fvwm
+cp config ~/.fvwm/config
+cp -r icons ~/.fvwm/
+cp -r wallpaper ~/.fvwm/
+
+echo '[fvwm] successfully'
