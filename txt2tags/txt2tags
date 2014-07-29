@@ -360,7 +360,7 @@ Fake template to respect the general process.
 <link rel="stylesheet" type="text/css" href="%(STYLE)s" />
 </head>
 <body onload="prettyPrint()" style=" margin: 0px; padding: 0px; background-color: #e0e0e0; font-family: Arial,Helvetica,sans-serif; ">
-<div id="zys-wrapper" style=" width: 800px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; ">
+<div style=" width: 800px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; ">
 
 <h1 style=" color: black; letter-spacing: 0.2em; text-align: center; font-size: x-large; font-weight: bold; margin: 30px auto 30px auto; ">%(HEADER1)s</h1>
 
@@ -386,7 +386,7 @@ Fake template to respect the general process.
 </head>
 <body>
 
-<div class="header" id="header">
+<div class="header">
 <h1>%(HEADER1)s</h1>
 <h2>%(HEADER2)s</h2>
 <h3>%(HEADER3)s</h3>
@@ -769,7 +769,7 @@ def getTags(config):
         'deflistItem2Close'    : '</dd>'          ,
         'bar1'                 : '<hr style=" border-top: 1px solid gray; margin: 30px auto;" />',
         'bar2'                 : '<div style="page-break-after:always;"></div>',
-        'anchor'               : '<a id="\a" name="\a"></a>\n',
+        'anchor'               : '<a name="\a"></a>\n',
         'img'                  : '<img~A~ src="\a" alt="" style="border: 1px solid black;"/>',
     },
     
