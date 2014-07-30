@@ -28,7 +28,7 @@ ImagePath $[fvwm_icon]:$[fvwm_icon];.png:$[fvwm_wallpapers]:+
 DesktopSize 3x3
 DesktopName 0 Page
 EdgeScroll 0 0
-EdgeResistance 150  150
+EdgeResistance 150
 EdgeThickness 1
 
 *FvwmPager: Rows       1
@@ -49,13 +49,13 @@ IgnoreModifiers L25
 # Global Styles and options
 ###########
 Style * TileCascadePlacement, EWMHMaximizeIgnoreWorkingArea, EWMHPlacementIgnoreWorkingArea
-Style * NoPPosition, ResizeOpaque
 OpaqueMoveSize -1
 Emulate MWM
 HideGeometryWindow Never
-SnapAttraction 5 SameType Screen
-SnapGrid 3 3
 XorValue 55555
+Style * SnapAttraction 5 SameType Screen
+Style * NoPPosition, ResizeOpaque
+Style * SnapGrid 3 3
 Style * DecorateTransient, DontRaiseTransient
 Style * DontLowerTransient, StackTransientParent
 #Style * GrabFocusTransientOff
