@@ -1,0 +1,20 @@
+#! /bin/bash
+
+#/usr/bin/gnome-keyring-daemon --start --components=pkcs11
+#/home/zys/.dropbox-dist/dropboxd &
+
+#nohup perl /home/zys/temp/edit-server &
+
+
+#左手
+#xmodmap -e "pointer = 1 2 3 4 5"
+
+#把caps lock换成control
+#http://efod.se/writings/linuxbook/html/caps-lock-to-ctrl.html
+xmodmap -e 'keycode 66 = Control_L'
+xmodmap -e 'clear Lock'
+xmodmap -e 'add Control = Control_L'
+
+nm-applet &
+stardict -h &
+parcellite -n &

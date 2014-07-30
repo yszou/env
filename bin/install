@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm -rf ~/bin
+cp -r ../bin ~/bin
+chmod +x ~/bin/pyshut.py
+chmod +x ~/bin/init
+rm ~/bin/install
+echo '[bin] successfully'

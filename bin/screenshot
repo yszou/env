@@ -1,0 +1,42 @@
+#! /usr/bin/python
+# -*- coding: UTF-8 -*-
+
+#用scrot切图，并转为jpg格式保存到主目录下
+
+import os
+HOME = "/home/zys/" #截图要放的目录
+FIRST = "a" #图像命名的起始字符，只能一个字符
+
+def checkfile(local,file):
+    "检查文件是否已经存在"
+    if file in os.listdir(local):
+        return True
+    else: return False
+
+def getfilename(first):
+    "确定截图的文件名，只返回一个字母"
+    filename = first + ".png"
+    filename2 = first + ".jpg"
+    while checkfile(HOME,filename) or checkfile(HOME,filename2):
+        first = chr(ord(first) + 1)
+        filename = first + ".png"
+        filename2 = first + ".jpg"
+    else: return first
+
+def report(filename,local):
+    "桌面提示被保存的图片的文件名"
+    cmd = "notify-send -u critical -t 1000" + ' "*截图成功*" ' + '"' + filename + '\n\n 被保存到了：\n\n' + local + '"'
+    os.system(cmd)
+
+def main():
+    "主要执行逻辑"
+    filename = getfilename(FIRST)
+    cmd = "scrot -s -b " + HOME + filename + ".png"
+    os.system('rxvt -e sleep 0')
+    os.system(cmd)
+    cmd = "convert " + HOME + filename + ".png " + HOME + filename + ".jpg"
+    os.system(cmd)
+    cmd = "rm " + HOME + filename + ".png"
+    os.system(cmd)
+    report(filename + ".jpg", HOME)
+main()
