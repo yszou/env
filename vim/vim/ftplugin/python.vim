@@ -3,4 +3,4 @@
 noremap <F2> :!python <C-R>=expand("%:p")<CR><Enter>
 
 "in file_finder.vim
-call PythonEnvActive()
+"call PythonEnvActive()
