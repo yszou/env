@@ -135,7 +135,6 @@ Style "LaunchTime" NeverFocus
 Style "Tray" NeverFocus   
 #Style "gvim"  EWMHMaximizeUseWorkingArea
 Style * !Title
-Style "rxvt"  EWMHMaximizeUseWorkingArea
 Style "Firefox"  !Borders
 Style "MPlayer"  !Borders
 Style "gvim-server"  StaysOnTop,FixedSize,FixedPosition
@@ -207,10 +206,10 @@ Key	XF86AudioRaiseVolume	A	N	Exec exec amixer set Master 2%+
 #Key	9	A	C	Exec exec amixer set PCM 4%-
 Key	XF86AudioLowerVolume	A	N	Exec exec amixer set Master 2%-
 Key	XF86AudioMute	A	N	Exec exec amixer set Master toggle
-Key	F1	A	C	Exec exec terminator --geometry=1200x800+100+100
+Key	F1	A	C	Exec exec gnome-terminal --geometry=1200x800+100+100
 Key	F2	A	C	Exec exec gvim -f +set\ ft=txt2tags +source\ ~/.vimrc
 Key	F3	A	C	Exec exec thunar /home/zys
-Key	F4	A	C	Exec exec rxvt -e python
+Key	F4	A	C	Exec exec gnome-terminal -e python
 Key	F1	A	M	Exec exec scrot '/home/zys/.fvwm/wallpaper/now.png' -q 100 -e 'fvwm-root -r $f'
 Key	F2	A	M	Exec exec fvwm-root -r /home/zys/.fvwm/wallpaper/bg.png
 Key	l	A	CM	Exec exec gnome-screensaver-command -l
