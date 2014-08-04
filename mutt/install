@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+cp mail_alias ~/.mail_alias
+cp mailcap ~/.mailcap
+cp muttrc ~/.muttrc
+cp signature ~/.signature
+
+echo '[mutt] successfully'

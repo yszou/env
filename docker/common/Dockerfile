@@ -51,7 +51,8 @@ RUN apt-get install -y \
     ctags \
     zsh \
     locate \
-    telnet
+    telnet \
+    dnsutils
 
 RUN rm -rf /usr/bin/python && \
     ln -s /usr/bin/python2.7 /usr/bin/python
