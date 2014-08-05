@@ -1,7 +1,7 @@
 #FROM http://stevelosh.com/blog/2012/10/the-homely-mutt/
 #sidebar patch: http://www.lunar-linux.org/mutt-sidebar/
 
-set sendmail="python ~/Dropbox/AceSend/sendmail.py"
+set sendmail="python $HOME/Dropbox/AceSend/sendmail.py"
 set from="YS.Zou <yeshengzou@gmail.com>"
 set charset="utf-8"
 set send_charset="utf-8"
@@ -10,15 +10,14 @@ set text_flowed=yes
 charset-hook ^gb2312$ gb18030
 
 
-source ~/.mail_alias
-set alias_file=~/.mail_alias
-set signature="~/.signature"
+source $HOME/.mail_alias
+set alias_file=$HOME/.mail_alias
 set sig_dashes=no #不自动添加--
 
 my_hdr Bcc: YS.Zou <yeshengzou+send@gmail.com>
 set sort = threads
 set sort_aux = last-date-received
-set signature='~/.signature'
+set signature='$HOME/.signature'
 set date_format = "%m-%d %H:%M"
 set index_format = "@%-12.12n (%E) %?Y?【%Y】?%-40.40s %D %?X?*%X?"
 set uncollapse_jump=yes                    # don't collapse on an unread message
@@ -34,12 +33,13 @@ set indent_str='>'
 set include=yes #回复时是否包含原文
 
 set mbox_type=Maildir           # Maildir格式
-set folder="~/mail"            # 邮件目录
+set folder="$HOME/mail"            # 邮件目录
 
 set mask="!^\\.[^.]"            # 忘了干什么的了
-set mbox="+inbox"               # 收件箱是 ~/.mail/inbox
-set postponed="+draft"          # 草稿箱是 ~/.mail/inbox
-set spoolfile="~/mail/inbox"   # MDA直接把邮件递到我的收件箱
+set mbox="=inbox"               # 收件箱是 ~/.mail/inbox
+set record="=inbox"             # 发件箱
+set postponed="=inbox"          # 草稿箱是 ~/.mail/inbox
+set spoolfile="=inbox"   # MDA直接把邮件递到我的收件箱
 
 mailboxes `find ~/temp/mail -maxdepth 1 -mindepth 1 -type d -name "*" -printf "+%f \n"|sort|xargs`
 
