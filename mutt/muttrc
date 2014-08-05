@@ -19,6 +19,11 @@ my_hdr Bcc: YS.Zou <yeshengzou+send@gmail.com>
 set sort = threads
 set sort_aux = last-date-received
 set signature='~/.signature'
+set date_format = "%m-%d %H:%M"
+set index_format = "@%-12.12n (%E) %?Y?【%Y】?%-40.40s %D %?X?*%X?"
+set uncollapse_jump=yes                    # don't collapse on an unread message
+set collapse_unread=yes
+
 
 lists @googlegroups.com @gnome.org
 subscribe @googlegroups.com @gnome.org
@@ -52,25 +57,6 @@ unignore Date
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
-
-
-# Index View Options ---------------------------------
-set date_format = "%m-%d %H:%M"
-#set index_format = "[%Z]  %D  %-12.12n  (%E%?X?*%X?) %?Y?【%Y】?%s"
-set index_format = "@%-12.12n (%E) %?Y?【%Y】?%-40.40s %D %?X?*%X?"
-set sort = threads                         # like gmail
-set sort_aux = reverse-last-date-received  # like gmail
-set uncollapse_jump=yes                    # don't collapse on an unread message
-set collapse_unread=yes
-#set sort_re                                # thread based on regex
-#set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
-
-
-
-
-
-
-
 
 
 # Pager View Options ---------------------------------
