@@ -1,7 +1,7 @@
 #FROM http://stevelosh.com/blog/2012/10/the-homely-mutt/
 #sidebar patch: http://www.lunar-linux.org/mutt-sidebar/
 
-set sendmail="python /home/zys/Dropbox/AceSend/sendmail.py"
+set sendmail="python ~/Dropbox/AceSend/sendmail.py"
 set from="YS.Zou <yeshengzou@gmail.com>"
 set charset="utf-8"
 set send_charset="utf-8"
@@ -15,44 +15,26 @@ set alias_file=~/.mail_alias
 set signature="~/.signature"
 set sig_dashes=no #不自动添加--
 
-
 my_hdr Bcc: YS.Zou <yeshengzou+send@gmail.com>
-my_hdr Reply-To: YS.Zou <yeshengzou@gmail.com>
-folder-hook . set record=^
-folder-hook 'Template' set record=''
-
-folder-hook . set sort = threads
-folder-hook . set sort_aux = reverse-last-date-received
-folder-hook inbox set sort = reverse-date-sent
-folder-hook 8-Discuz set sort_aux = date-received
-
-
-#folder-hook . "push <collapse-all>"
-
-send-hook . 'my_hdr From: YS.Zou <yeshengzou@gmail.com>'
-send-hook . 'my_hdr Reply-To: YS.Zou <yeshengzou@gmail.com>'
-#send-hook . 'my_hdr Bcc: YS.Zou <yeshengzou@gmail.com>'
-send-hook . 'set signature="~/.signature"'
-
+set sort = threads
+set sort_aux = last-date-received
+set signature='~/.signature'
 
 lists @googlegroups.com @gnome.org
 subscribe @googlegroups.com @gnome.org
 
-
 set editor="gvim -f '+set ft=txt2tags' '+set textwidth=0' '+1,1s/^/#@#\r#@#\r#@#\r#@#\r#@#\r#@#\r/' '+1,6s/#@#//g' -f"
-set query_command="python ~/Dropbox/AceContact/query.py '%s'"
+#set query_command="python ~/Dropbox/AceContact/query.py '%s'"
 set indent_str='>'
 set include=yes #回复时是否包含原文
-#set header_cache='/home/zys/Mail/header_cache'
 
 set mbox_type=Maildir           # Maildir格式
-set folder="~/temp/mail"            # 邮件目录
+set folder="~/mail"            # 邮件目录
 
 set mask="!^\\.[^.]"            # 忘了干什么的了
-set mbox="+0-inbox"               # 收件箱是 ~/.mail/inbox
-#set record="+0-inbox"             # 发件箱是 ~/.mail/inbox
-set postponed="+1-draft"          # 草稿箱是 ~/.mail/inbox
-set spoolfile="~/temp/mail/0-inbox"   # MDA直接把邮件递到我的收件箱
+set mbox="+inbox"               # 收件箱是 ~/.mail/inbox
+set postponed="+draft"          # 草稿箱是 ~/.mail/inbox
+set spoolfile="~/mail/inbox"   # MDA直接把邮件递到我的收件箱
 
 mailboxes `find ~/temp/mail -maxdepth 1 -mindepth 1 -type d -name "*" -printf "+%f \n"|sort|xargs`
 
@@ -65,13 +47,6 @@ unignore User-Agent
 unignore Date
 
 
-
-
-# Sidebar Patch --------------------------------------
-set sidebar_delim   = ' │'
-set sidebar_visible = yes
-set sidebar_width   = 20
-color sidebar_new yellow default
 
 
 # Status Bar -----------------------------------------
@@ -91,18 +66,9 @@ set collapse_unread=yes
 #set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 
-bind index,pager y edit-label
-# Sidebar Navigation ---------------------------------
-bind index,pager J   sidebar-next
-bind index,pager K     sidebar-prev
-bind index,pager L  sidebar-open
 
 
 
-
-# Mario Holbe suggests:
-macro pager H '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
-macro index H '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 
 
 
@@ -116,7 +82,7 @@ set tilde                  # show tildes like in vim
 unset markers              # no ugly plus signs
 
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
-alternative_order text/plain text/enriched text/html
+alternative_order text/html text/plain text/enriched 
 
 
 # Pager Key Bindings ---------------------------------
