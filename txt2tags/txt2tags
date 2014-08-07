@@ -5357,7 +5357,7 @@ def convert_this_files(configs):
         #bbcode的[s]之类的转义问题
         if myconf['target'] in ['bbcode']:
             for i in xrange(len(source_body) - 1):
-                source_body[i] = re.sub('\[(.*?)\]', r'[\x00\1]', source_body[i])
+                source_body[i] = re.sub('\[(.*?)\]', r'[ \1 ]', source_body[i])
 
         target_body, marked_toc = convert(source_body, myconf, firstlinenr=first_body_line)
         # If dump-source, we're done
