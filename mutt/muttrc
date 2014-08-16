@@ -23,6 +23,8 @@ set index_format = "@%-12.12n (%E) %?Y?【%Y】?%-40.40s %D %?X?*%X?"
 set uncollapse_jump=yes                    # don't collapse on an unread message
 set collapse_unread=yes
 
+send-hook . 'set signature=`python ~/github/env/mutt/gen_sign.py`'
+
 
 lists @googlegroups.com @gnome.org
 subscribe @googlegroups.com @gnome.org
