@@ -1,4 +1,4 @@
-FROM zys:common
+FROM common
 MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run

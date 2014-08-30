@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/opt/memcached/bin/memcached -u root && \
+exec /usr/sbin/sshd -D

@@ -5,7 +5,6 @@ ADD run /root/run
 ADD sources.list /etc/apt/sources.list
 ADD id_rsa.pub /tmp/pubkey
 ADD locale /etc/default/locale
-ADD requirements /root/requirements
 
 RUN mkdir -p /root/.ssh && \
     cat /tmp/pubkey >> /root/.ssh/authorized_keys && \
@@ -52,13 +51,11 @@ RUN apt-get install -y \
     zsh \
     locate \
     telnet \
-    dnsutils
+    dnsutils \
+    libmemcached-dev
 
 RUN rm -rf /usr/bin/python && \
     ln -s /usr/bin/python2.7 /usr/bin/python
-
-#RUN pip install -vv -i http://pypi.douban.com/simple/ -r /root/requirements
-RUN pip install -vv -i http://pypi.hustunique.com/simple/ -r /root/requirements
 
 ENV HOME /root
 RUN mkdir -p /root/volumn

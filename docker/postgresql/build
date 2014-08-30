@@ -4,4 +4,4 @@ if [ ! -f "postgresql-9.3.4.tar.gz" ]; then
     wget http://ftp.postgresql.org/pub/source/v9.3.4/postgresql-9.3.4.tar.gz
 fi
 
-docker build .
+docker build -t postgresql .
