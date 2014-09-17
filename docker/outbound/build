@@ -4,4 +4,8 @@ if [ ! -f "node-v0.10.31.tar.gz" ]; then
     wget http://nodejs.org/dist/v0.10.31/node-v0.10.31.tar.gz
 fi
 
+openssl req -x509 -nodes -days 2190 -newkey rsa:2048 \
+    -keyout outbound/config/tls_key.pem \
+    -out outbound/config/tls_cert.pem
+
 docker build -t outbound .
