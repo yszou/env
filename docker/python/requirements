@@ -24,3 +24,5 @@ Twisted
 Scrapy
 
 pylibmc
+pika
+xlrd
