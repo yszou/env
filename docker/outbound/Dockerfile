@@ -5,6 +5,7 @@ ADD run /root/run
 ADD node-v0.10.31.tar.gz /root/src
 ADD outbound /root/src/outbound
 
+RUN apt-get upgrade -y
 RUN cd /root/src/node-v0.10.31 && \
     ./configure && \
     make && \
