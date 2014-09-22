@@ -4,6 +4,7 @@ MAINTAINER YS.Zou <yeshengzou@gmail.com>
 ADD run /root/run
 ADD postgresql-9.3.4.tar.gz /root/src
 
+RUN apt-get upgrade -y
 RUN cd /root/src/postgresql-9.3.4 && \
     ./configure --prefix=/opt/postgresql --with-openssl --with-python && \
     make && \
