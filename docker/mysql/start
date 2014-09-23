@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -h mysql --name="mysql" -d -p 3306:3306 -p $1:22 mysql
