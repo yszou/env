@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run --link=postgresql:postgresql --link=rabbitmq:rabbitmq -h zstage --name="zstage" -d -p 12000:22 zstage

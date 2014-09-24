@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run --link=postgresql:postgresql --link=rabbitmq:rabbitmq -h bbaward --name="bbaward" -d -p 12001:22 bbaward

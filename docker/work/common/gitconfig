@@ -1,0 +1,12 @@
+[user]
+	email = yeshengzou@gmail.com
+	name = YS.Zou
+[color]
+    diff = always
+    ui = always
+    status = always
+    branch = always
+[http]
+    proxy = http://10.1.190.164:8080
+[https]
+    proxy = http://10.1.190.164:8080

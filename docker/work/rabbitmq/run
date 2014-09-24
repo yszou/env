@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/root/src/rabbitmq_server-3.3.5/sbin/rabbitmq-server -detached && \
+exec /usr/sbin/sshd -D
