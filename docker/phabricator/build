@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ ! -f "libphutil.tar.gz" ]; then
+    git clone https://github.com/phacility/libphutil.git && \
+    cd libphutil && \
+    git pull --rebase && \
+    cd .. && \
+    tar czf libphutil.tar.gz libphutil && \
+    rm -rf libphutil
+fi
+
+if [ ! -f "arcanist.tar.gz" ]; then
+    git clone https://github.com/phacility/arcanist.git && \
+    cd arcanist && \
+    git pull --rebase && \
+    cd .. && \
+    tar czf arcanist.tar.gz arcanist && \
+    rm -rf arcanist
+fi
+
+if [ ! -f "phabricator.tar.gz" ]; then
+    git clone https://github.com/phacility/phabricator.git && \
+    cd phabricator && \
+    git pull --rebase && \
+    cd .. && \
+    tar czf phabricator.tar.gz phabricator && \
+    rm -rf phabricator
+fi
+
+
+docker build -t phabricator .

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+service php5-fpm start && \
+service mysql start && \
+chmod 666 /var/run/php5-fpm.sock && \
+/var/www/phabricator/bin/phd start && \
+/opt/nginx/sbin/nginx && \
+exec /usr/sbin/sshd -D
