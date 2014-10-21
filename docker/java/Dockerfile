@@ -3,7 +3,7 @@ MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run
 
-RUN apt-get update && \
+RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y openjdk-7-jdk
 
