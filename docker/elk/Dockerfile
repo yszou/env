@@ -2,7 +2,7 @@ FROM java
 MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run
-ADD logstash.conf /root/logstach.conf
+ADD logstash.conf /root/logstash.conf
 
 ADD elasticsearch-1.3.2.tar.gz /opt
 ADD logstash-1.4.2.tar.gz /opt
