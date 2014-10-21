@@ -3,8 +3,9 @@ MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run
 
-RUN apt-get upgrade -y
-RUN apt-get install -y openjdk-7-jdk
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y openjdk-7-jdk
 
 RUN rm -rf ~/.ssh/id_rsa && \
     rm -rf ~/.ssh/id_rsa.pub && \
