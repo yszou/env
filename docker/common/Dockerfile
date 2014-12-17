@@ -52,7 +52,8 @@ RUN apt-get install -y \
     locate \
     telnet \
     dnsutils \
-    libmemcached-dev
+    libmemcached-dev \
+    libpcre3-dev
 
 RUN rm -rf /usr/bin/python && \
     ln -s /usr/bin/python2.7 /usr/bin/python
