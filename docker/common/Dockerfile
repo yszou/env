@@ -63,7 +63,7 @@ RUN mkdir -p /root/volumn
 RUN mkdir -p /root/src && \
     mkdir -p /root/src/github && \
     cd /root/src/github && \
-    git clone https://github.com/zephyrzou/env.git && \
+    git clone https://github.com/yszou/env.git && \
     cd /root/src/github/env/vim && \
     bash install && \
     cd /root/src/github/env/zsh && \
