@@ -43,6 +43,7 @@ RUN apt-get install -y \
     vim \
     git \
     curl \
+    wget \
     sqlite3 \
     postgresql-client \
     mysql-client \
