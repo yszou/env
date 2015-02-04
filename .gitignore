@@ -2,3 +2,4 @@
 docker/common/id_rsa.pub
 *.tar.gz
 *.zip
+.DS_Store
