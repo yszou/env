@@ -360,8 +360,8 @@ Fake template to respect the general process.
 <meta name="author" content="Yesheng Zou,YS.Zou,邹业盛"/>
 <link rel="stylesheet" type="text/css" href="%(STYLE)s" />
 </head>
-<body style=" margin: 0px; padding: 0px; background-color: #e0e0e0; font-family: Arial,Helvetica,sans-serif; ">
-<div style=" width: 800px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; ">
+<body style=" margin: 0px; padding: 0px; background-color: #eff3fa; font-family: Arial,Helvetica,sans-serif; ">
+<div style=" width: 1287px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; background-color: #E4D4BB; background-image: repeating-radial-gradient(circle, #E4D4BB, #E7DAC6 50%% , #E7DAC6 100%% ); background-size: 10px 10px; ">
 
 <h1 style=" color: black; letter-spacing: 0.2em; text-align: center; font-size: x-large; font-weight: bold; margin: 30px auto 30px auto; ">%(HEADER1)s</h1>
 
@@ -700,7 +700,7 @@ def getTags(config):
     },
     
     'html': {
-        'paragraphOpen'        : '<P STYLE="margin: 15px 0;">'            ,
+        'paragraphOpen'        : '<P STYLE="margin: 15px auto; width: 800px;">'            ,
         'paragraphClose'       : '</P>'           ,
         'title1'               : '~A~<H1 STYLE=" padding: 4px; line-height: 1.3em; margin: 50px auto; font-size: 22px; border-bottom: 1px solid; clear: both;">\a</H1>' ,
 
@@ -724,13 +724,13 @@ def getTags(config):
         'fontUnderlineClose'   : '</U>'           ,
         'fontStrikeOpen'       : '<S>'            ,
         'fontStrikeClose'      : '</S>'           ,
-        'listOpen'             : '<UL STYLE="line-height: 1.6em; padding: 0px; padding-left: 20px; margin: auto 30px;">'           ,
+        'listOpen'             : '<UL STYLE="line-height: 1.6em; list-style-position: inside; padding: 0px; padding-left: 80px; margin: auto; width: 800px; ">'           ,
         'listClose'            : '</UL>'          ,
         'listItemOpen'         : '<LI>'           ,
-        'numlistOpen'          : '<OL STYLE="line-height: 1.6em; padding: 0px; padding-left: 20px; margin: auto 30px;">'           ,
+        'numlistOpen'          : '<OL STYLE="line-height: 1.6em; list-style-position: inside; padding: 0px; padding-left: 80px; margin: auto; width: 800px; ">'           ,
         'numlistClose'         : '</OL>'          ,
         'numlistItemOpen'      : '<LI>'           ,
-        'deflistOpen'          : '<DL STYLE="font-size: 15px; margin: 10px auto; padding: 10px;">'           ,
+        'deflistOpen'          : '<DL STYLE="font-size: 15px; margin: auto; padding: 10px; width: 800px;">'           ,
         'deflistClose'         : '</DL>'          ,
         'deflistItem1Open'     : '<DT STYLE="padding-left: 5px; margin: 5px auto;">'           ,
         'deflistItem1Close'    : '</DT>'          ,
@@ -4913,8 +4913,8 @@ def doFooter(config):
     global SUBJECT
 
     disqus = '''
-<div style=" -moz-border-radius: 5px; -webkit-border-radius: 5px; -moz-box-shadow: 3px 3px 5px #333; -webkit-box-shadow: 3px 3px 5px #333; box-shadow: 3px 3px 5px #333;  border-radius: 5px; background-color: #2a9af9; padding: 4px; color: white; line-height: 1.3em; text-shadow: 2px 2px 2px black; margin-top: 100px; margin-bottom: 20px; font-size: medium; clear: both;">评论</div>
-<div id="disqus_thread"></div>
+    <div style="padding: 4px; line-height: 1.4em; font-size: 22px; margin-top: 100px; margin-bottom: 20px; clear: both; text-align: center; font-weight: bold; ">评论</div>
+<div id="disqus_thread" style="width: 800px; margin: auto; "></div>
 <script type="text/javascript">
   var disqus_shortname = 'zys';
   var disqus_identifier = '%(id)s';
