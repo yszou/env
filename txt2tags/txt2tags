@@ -152,7 +152,8 @@ OPTIONS  = {'target'     :'', 'toc-level'  :3 , 'style'      :'',
             'infile'     :'', 'outfile'    :'', 'encoding'   :'',
             'config-file':'', 'split'      :0 , 'lang'       :'',
             'width'      :0 , 'height'     :0 , 'art-chars'  :'',
-            'show-config-value':''}
+            'show-config-value':'',
+            'qr': ''}
 ACTIONS  = {'help'       :0 , 'version'    :0 , 'gui'        :0 ,
             'verbose'    :0 , 'debug'      :0 , 'dump-config':0 ,
             'dump-source':0 , 'targets'    :0}
@@ -361,7 +362,7 @@ Fake template to respect the general process.
 <link rel="stylesheet" type="text/css" href="%(STYLE)s" />
 </head>
 <body style=" margin: 0px; padding: 0px; background-color: #eff3fa; font-family: Arial,Helvetica,sans-serif; ">
-<div style=" width: 1287px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; background-color: #E4D4BB; background-image: repeating-radial-gradient(circle, #E4D4BB, #E7DAC6 50%% , #E7DAC6 100%% ); background-size: 10px 10px; ">
+<div style=" width: 1280px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; background-color: #E4D4BB; background-image: repeating-radial-gradient(circle, #E4D4BB, #E7DAC6 50%% , #E7DAC6 100%% ); background-size: 10px 10px; position: relative; ">
 
 <h1 style=" color: black; letter-spacing: 0.2em; text-align: center; font-size: x-large; font-weight: bold; margin: 30px auto 30px auto; ">%(HEADER1)s</h1>
 
@@ -4952,6 +4953,12 @@ def doFooter(config):
 </div>
     '''
 
+    qr_template = '''
+<div style="position: absolute; left: 30px; top: 30px;">
+    <img src="%s" title="本文二维码网址" />
+</div>
+    '''
+
     math = '''
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -4996,6 +5003,26 @@ def doFooter(config):
 
         if config.get('google-analytics', 0):
             ret.append(google)
+
+        if config.get('qr', ''):
+            import qrcode
+            from cStringIO import StringIO
+            url = config.get('qr')
+            qr = qrcode.QRCode(version=1,
+                               error_correction=qrcode.constants.ERROR_CORRECT_L,
+                               box_size=5,
+                               border=2)
+            qr.add_data(url)
+            qr.make(fit=True)
+            img = qr.make_image()
+            buff = StringIO()
+            img.save(buff)
+            buff.seek(0)
+            s = buff.read()
+            s = s.encode('base64')
+
+            s = 'data:image/png;base64,' + s
+            ret.append(qr_template % s)
 
         import datetime
         ret.append(copyright % datetime.date.today().year)
