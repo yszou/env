@@ -1,6 +1,6 @@
 set textwidth=0
 
-noremap <F2> :!txt2tags -t xhtml --toc-level=2 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.html <C-R>=expand("%:p")<CR> <Enter>
+noremap <F2> :!txt2tags -t xhtml --toc-level=3 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.html <C-R>=expand("%:p")<CR> <Enter>
 noremap <F3> :!firefox /home/zys/temp/<C-R>=expand("%:t:r").".html"<CR><Enter><Enter>
 noremap <F4> :!google-chrome /home/zys/temp/<C-R>=expand("%:t:r").".html"<CR><Enter><Enter>
 noremap <F5> :!txt2tags -t tex --toc-level=2 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.tex <C-R>=expand("%:p")<CR> <Enter>

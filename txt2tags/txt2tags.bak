@@ -353,24 +353,25 @@ Fake template to respect the general process.
 
     'xhtml': """\
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <title>%(HEADER1)s - YS.Zou</title>
-    <meta name="generator" content="http://txt2tags.org" />
-    <meta name="author" content="Yesheng Zou,YS.Zou,邹业盛"/>
-    <link rel="stylesheet" type="text/css" href="%(STYLE)s" />
+<meta charset="utf-8" />
+<title>%(HEADER1)s - YS.Zou</title>
+<meta name="generator" content="http://txt2tags.org" />
+<meta name="author" content="Yesheng Zou,YS.Zou,邹业盛"/>
+<link rel="stylesheet" type="text/css" href="%(STYLE)s" />
 </head>
+<body style=" margin: 0px; padding: 0px; background-color: #eff3fa; font-family: Arial,Helvetica,sans-serif; ">
+<div style=" width: 1280px; margin: auto; font-size: 17px; line-height: 1.7em; color: #333; letter-spacing: 1px; padding: 30px; background-color: white; background-color: #E4D4BB; background-image: repeating-radial-gradient(circle, #E4D4BB, #E7DAC6 50%% , #E7DAC6 100%% ); background-size: 10px 10px; position: relative; ">
 
-<body class="z" style="color: #333; font-size: 16px; letter-spacing: 0.2em; font-family: 'Microsoft YaHei','WenQuanYi Micro Hei',SimHei,tahoma,sans-serif; -webkit-font-smoothing: antialiased; margin: 0;">
-    <div class="content" style="width: 900px; margin: auto; padding: 30px; box-sizing: border-box; position: relative">
-        <div class="header">
-            <h1 style="text-align: center; font-size: 26px; margin: 0;">%(HEADER1)s</h1>
-            <div class="user" style="margin: 20px auto; text-align: center;">
-                <span>%(HEADER2)s</span>
-                <span>%(HEADER3)s</span>
-            </div>
-        </div>
+<h1 style=" color: black; letter-spacing: 0.2em; text-align: center; font-size: x-large; font-weight: bold; margin: 30px auto 30px auto; ">%(HEADER1)s</h1>
+
+<div style=" float: right; font-size: 13px; color: #777; ">
+    <ul style=" text-align: right; ">
+        <li style=" list-style-type: none; border-right: 4px solid rgb(0, 120, 181); padding-right: 10px; ">%(HEADER3)s</li>
+        <li style=" list-style-type: none; border-right: 4px solid rgb(0, 120, 181); padding-right: 10px; ">%(HEADER2)s</li>
+    </ul>
+</div>
 """,
 
     'xhtmlcss': """\
@@ -700,59 +701,58 @@ def getTags(config):
     },
     
     'html': {
-        'paragraphOpen'        : '<P STYLE="line-height: 1.8em; margin: 25px auto; word-break: break-word; word-wrap: break-word;">'            ,
+        'paragraphOpen'        : '<P STYLE="margin: 15px auto; width: 800px;">'            ,
         'paragraphClose'       : '</P>'           ,
-        'title1'               : '~A~<H1 STYLE="font-size: 22px; margin: 35px auto; border-bottom: 1px solid gray; padding-top: 5px; padding-bottom: 5px;">\a</H1>' ,
+        'title1'               : '~A~<H1 STYLE=" padding: 4px; line-height: 1.3em; margin: 50px auto; font-size: 22px; border-bottom: 1px solid; clear: both;">\a</H1>' ,
 
-        'title2'               : '~A~<H2 STYLE="font-size: 20px; margin: 30px auto;">\a</H2>' ,
-        'title3'               : '~A~<H3 STYLE="font-size: 18px; margin: 25px auto;">\a</H3>' ,
+        'title2'               : '~A~<H2 STYLE=" padding: 2px; margin: 25px auto; font-size: 20px;">\a</H2>' ,
+        'title3'               : '~A~<H3 STYLE=" font-size: 17px; margin: 0 auto; padding: 2px;">\a</H3>' ,
         'title4'               : '~A~<H4>\a</H4>' ,
         'title5'               : '~A~<H5>\a</H5>' ,
         'anchor'               : '<A NAME="\a"></A>\n',
         #'blockVerbOpen'        : '<PRE STYLE=" white-space: pre-wrap; word-wrap: break-word; border-left: 5px solid #999; font-size: small; line-height: 1.5em; padding: 5px;" class="lang-\a">'          ,
-        'blockVerbOpen'        : '<PRE STYLE="white-space: pre; font-size: 10px; line-height: 1.5em; margin-left: 15px; letter-spacing: 0;" class="lang-\a">'          ,
+        'blockVerbOpen'        : '<PRE STYLE=" background-color: white; font-size: small; line-height: 1.5em; padding: 0 15px 0 15px; margin: 0;" class="lang-\a">'          ,
         'blockVerbClose'       : '</PRE>'         ,
-        'blockQuoteOpen'       : '''<PRE CLASS="quote" STYLE="white-space: pre-wrap; border: 1px dashed gray; padding: 20px; font-family: 'Microsoft YaHei','WenQuanYi Micro Hei',SimHei,tahoma,sans-serif;">'''   ,
+        'blockQuoteOpen'       : '<PRE STYLE="margin: 5px 50px; padding: 0px 5px; border-left: 5px solid #999; line-height: 1.6em; color: gray;">'   ,
         'blockQuoteClose'      : '</PRE>'  ,
-        'fontMonoOpen'         : '<CODE STYLE="margin: auto 3px; color: #228b22; font-family: monospace; letter-spacing: 0;">'         ,
+        'fontMonoOpen'         : '<CODE STYLE="margin: auto 3px; color: #228b22; font-family: monospace; ">'         ,
         'fontMonoClose'        : '</CODE>'        ,
-        'fontBoldOpen'         : '<STRONG STYLE="color: red; font-weight: normal;">'            ,
+        'fontBoldOpen'         : '<STRONG STYLE=" color: red; font-weight: normal; ">'            ,
         'fontBoldClose'        : '</STRONG>'           ,
-        'fontItalicOpen'       : '<EM STYLE="color: #D75100; font-style: normal;">'         ,
+        'fontItalicOpen'       : '<EM STYLE=" color: #D75100; font-style: normal; ">'         ,
         'fontItalicClose'      : '</EM>'           ,
         'fontUnderlineOpen'    : '<U>'            ,
         'fontUnderlineClose'   : '</U>'           ,
         'fontStrikeOpen'       : '<S>'            ,
         'fontStrikeClose'      : '</S>'           ,
-        'listOpen'             : '<UL STYLE="line-height: 1.6em; list-style: inside square; padding: 0px; padding-left: 50px; margin: auto;">'           ,
+        'listOpen'             : '<UL STYLE="line-height: 1.6em; list-style-position: inside; padding: 0px; padding-left: 80px; margin: auto; width: 800px; ">'           ,
         'listClose'            : '</UL>'          ,
         'listItemOpen'         : '<LI>'           ,
-        'numlistOpen'          : '<OL STYLE="line-height: 1.6em; list-style: inside square; padding: 0px; padding-left: 50px; margin: auto;">'           ,
+        'numlistOpen'          : '<OL STYLE="line-height: 1.6em; list-style-position: inside; padding: 0px; padding-left: 80px; margin: auto; width: 800px; ">'           ,
         'numlistClose'         : '</OL>'          ,
         'numlistItemOpen'      : '<LI>'           ,
-        'deflistOpen'          : '<DL STYLE="">'           ,
+        'deflistOpen'          : '<DL STYLE="font-size: 15px; margin: auto; padding: 10px; width: 800px;">'           ,
         'deflistClose'         : '</DL>'          ,
-        'deflistItem1Open'     : '<DT STYLE="">'           ,
+        'deflistItem1Open'     : '<DT STYLE="padding-left: 5px; margin: 5px auto;">'           ,
         'deflistItem1Close'    : '</DT>'          ,
-        'deflistItem2Open'     : '<DD STYLE="">'           ,
-        'bar1'                 : '<hr style="" />',
-        'bar2'                 : '<div style=""></div>',
+        'deflistItem2Open'     : '<DD STYLE="margin-left: 30px;">'           ,
+        'bar1'                 : '<hr style=" border-top: 1px solid gray; margin: 30px auto;" />',
+        'bar2'                 : '<div style="page-break-after:always;"></div>',
         'url'                  : '<A HREF="\a" STYLE="color: #0184b7; text-decoration: none">\a</A>'        ,
         'urlMark'              : '<A HREF="\a" STYLE="color: #0184b7; text-decoration: none">\a</A>'        ,
         'email'                : '<A HREF="mailto:\a" STYLE="color: #0184b7; text-decoration: none">\a</A>' ,
         'emailMark'            : '<A HREF="mailto:\a" STYLE="color: #0184b7; text-decoration: none">\a</A>' ,
-        'img'                  : '<IMG~A~ SRC="\a" ALT="" STYLE="">',
+        'img'                  : '<IMG~A~ SRC="\a" ALT="" STYLE="border: 1px solid black;">',
         '_imgAlignLeft'        : ' ALIGN="left"'  ,
         '_imgAlignCenter'      : ' ALIGN="middle"',
         '_imgAlignRight'       : ' ALIGN="right"' ,
-        'tableOpen'            : '<TABLE~A~~B~ STYLE="border: 1px solid gray; border-collapse: collapse; margin: 25px auto; line-height: 1.4em; font-size: 14px;">',
+        'tableOpen'            : '<TABLE~A~~B~ CELLPADDING="4" STYLE=" border: 1px solid; border-collapse: collapse; margin: 20px auto; line-height: 1.4em; ">',
         'tableClose'           : '</TABLE>'       ,
         'tableRowOpen'         : '<TR>'           ,
         'tableRowClose'        : '</TR>'          ,
-        'tableCellOpen'        : '<TD~A~~S~ STYLE="border: 1px solid gray; padding: 3px 10px;">'     ,
-        'tableCellClose'       : '</TD>'       
-        ,
-        'tableTitleCellOpen'   : '<TH~S~ STYLE="border: 1px solid gray; font-weight: bold; text-align: center; padding: 3px 10px;">'        ,
+        'tableCellOpen'        : '<TD~A~~S~ STYLE=" padding: 3px 10px;">'     ,
+        'tableCellClose'       : '</TD>'          ,
+        'tableTitleCellOpen'   : '<TH~S~ STYLE=" font-weight: bold; text-align: center; padding: 3px 10px;">'        ,
         'tableTitleCellClose'  : '</TH>'          ,
         '_tableBorder'         : ' BORDER="1"'    ,
         '_tableAlignCenter'    : ' ALIGN="center"',
@@ -772,10 +772,10 @@ def getTags(config):
         'listItemClose'        : '</li>'          ,
         'numlistItemClose'     : '</li>'          ,
         'deflistItem2Close'    : '</dd>'          ,
-        'bar1'                 : '<hr style="border-top: 1px solid #888; margin: 35px auto;" />',
+        'bar1'                 : '<hr style=" border-top: 1px solid gray; margin: 30px auto;" />',
         'bar2'                 : '<div style="page-break-after:always;"></div>',
-        'anchor'               : '<a class="anchor" name="\a"></a>\n',
-        'img'                  : '<img~A~ src="\a" alt="" style="border: 1px solid gray;"/>',
+        'anchor'               : '<a name="\a"></a>\n',
+        'img'                  : '<img~A~ src="\a" alt="" style="border: 1px solid black;"/>',
     },
     
     'sgml': {
@@ -4208,7 +4208,7 @@ class BlockMaster:
 
                 default_style = ''
 
-                background_color = 'white'
+                background_color = '#ffffff'
 
                 styles = {
                     Comment.Multiline:              'italic #999988',
@@ -4306,7 +4306,7 @@ class BlockMaster:
                 code = '[hr]' + code.rstrip() + '[hr]'
                 result = [code]
             else:
-                result = ['', '<div class="code" style="margin: 25px auto;">', code, '</div>', '']
+                result = ['', code, '']
 
         return result
 
@@ -4731,9 +4731,6 @@ def toc_tagger(toc, config):
         fakeconf['css-sugar']  = 0
         fakeconf['art-no-title']  = 1  # needed for --toc and --slides together, avoids slide title before TOC
         ret,foo = convert(toc, fakeconf)
-        if config.get('target', '') == 'xhtml':
-            ret.insert(0, '<div class="toc">')
-            ret.append('</div>')
         set_global_config(config)   # restore config
     # Our TOC list is not needed, the target already knows how to do a TOC
     elif config['toc'] and TAGS['TOC']:
@@ -4951,13 +4948,15 @@ def doFooter(config):
     '''
 
     copyright = '''
-<div style="font-size: 10px; text-align: right; margin-top: 50px; letter-spacing: 0;">
+<div style="font-size: x-small; text-align: right; margin-top: 50px;">
 &copy;2010-%s zouyesheng.com All rights reserved. Powered by <a href="https://github.com/" target="_blank">GitHub</a> , <a href="http://txt2tags.org/" target="_blank">txt2tags</a> , <a href="http://www.mathjax.org/" target="_blank">MathJax</a>
 </div>
     '''
 
     qr_template = '''
-<div style="position: absolute; right: 30px; top: 30px;"><img style="border: 1px solid gray;" src="%s" title="本文二维码网址" /></div>
+<div style="position: absolute; left: 30px; top: 30px;">
+    <img src="%s" title="本文二维码网址" />
+</div>
     '''
 
     math = '''
@@ -4987,160 +4986,47 @@ def doFooter(config):
 </script>
     '''
 
-    style_template = '''
-<style type="text/css">
-body.z { background-color: #eff3fa; }
-body.z > .content { background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); }
-body.z > .content > h1 { background-color: #0184b7; color: white; border-bottom: none; padding-left: 10px; border-radius: 5px; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9); }
-body.z > .content > .toc a:hover { background-color: #ddd; }
-body.z > .content > table th { background-color: rgba(223, 151, 27, 0.3);}
-body.z > .content > .quote:before { content: '引'; font-size: 30px; color: #ddd; font-family: "'Microsoft YaHei','WenQuanYi Micro Hei',SimHei,tahoma,sans-serif"; }
-</style>
-    '''
-
-    js_template = '''
-<script type="text/javascript" src="http://s.zys.me/js/jq/jquery.min.js"></script>
-<script type="text/javascript">
-
-$(function(){
-    function bind_scroll(){
-        $('body.z > .content > .toc ol').css({listStyle: 'none'})
-        $('body.z > .content > .toc ul').css({listStyle: 'none'})
-        $('body.z > .content > .toc a').css({display: 'block', paddingLeft: '10px'})
-
-        var anchor_list = $.map($('.anchor'), function(n){
-            return $(n).offset().top;
-        });
-        var item = $('body.z > .content > .toc a');
-        var last = 0;
-        var flag = 0;
-
-        $(window).on('scroll', function(eventObj){
-            _set_item();
-        });
-
-        function set_item(){
-            var top = $(window).scrollTop();
-            if(top < anchor_list[0]){
-                item.eq(last).css({backgroundColor: '', color: '#0184b7'});
-                last = 0;
-                return;
-            }
-
-            for(var i = 0, l = anchor_list.length; i < l; i++){
-                if(top < anchor_list[i]){break}
-                flag = i;
-            }
-            item.eq(last).css({backgroundColor: '', color: '#0184b7'});
-            item.eq(flag).css({backgroundColor: '#ddd', color: '#333'});
-            last = flag;
-        }
-
-        var timer = null;
-        function _set_item(){
-            if(timer){
-                clearTimeout(timer);
-            }
-            timer = setTimeout(set_item, 100);
-        }
-    }
-
-    function create_toc(){
-        if(!$('body.z > .content > .toc')){return}
-        if($('body.z > .content > .toc').height() < 50){return}
-
-        //至少200空间
-        var space = ($(window).width() - $('body.z > .content').outerWidth());
-        if( space < 200 ){return}
-
-        $('body.z > .content > .header').css('min-height', '150px');
-
-        var toc_width = (space > 400 ? 400 : space);
-        var content_left = (space - toc_width - 20) / 2;
-
-        $('body.z > .content > .toc ol').css({
-            paddingLeft: '20px'
-        });
-        $('body.z > .content > .toc ul').css({
-            paddingLeft: '20px'
-        });
-
-        $('body.z > .content').css({
-            marginLeft: content_left + 'px'
-        });
-
-        $('body.z > .content > .toc').css({
-            fontSize: '12px',
-            width: toc_width + 'px',
-            backgroundColor: 'white',
-            border: '1px solid #ccc',
-            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
-            position: 'fixed',
-            zIndex: 9999,
-            padding: '10px',
-            boxSizing: 'border-box',
-            top: '50px',
-            right: content_left + 'px',
-            overflow: 'auto',
-            maxHeight: $(window).height() - 100 + 'px'
-        });
-
-        bind_scroll();
-    }
-
-    create_toc();
-});
-</script>
-    '''
-
     # No footer. The --no-headers option hides header AND footer
     if not config['headers']:
         return []
 
     if config['target'] in ['xhtml', 'html']:
+        print config.get('format', '')
+        if config.get('disqus', 0):
+            id = config['sourcefile'].split('/')[-1].split('.')
+            id = '.'.join(id[0:-1])
+            ret.append(disqus % {'subject': SUBJECT,
+                                 'id': id,
+                                 'url': 'http://zouyesheng.com/%s.html' % id})
 
-        format = config.get('format', '')
+        if config.get('mathjax', 0):
+            ret.append(math)
 
-        if format != 'email':
+        if config.get('google-analytics', 0):
+            ret.append(google)
 
-            ret.append(style_template)
-            ret.append(js_template)
+        if config.get('qr', ''):
+            import qrcode
+            from cStringIO import StringIO
+            url = config.get('qr')
+            qr = qrcode.QRCode(version=1,
+                               error_correction=qrcode.constants.ERROR_CORRECT_L,
+                               box_size=5,
+                               border=2)
+            qr.add_data(url)
+            qr.make(fit=True)
+            img = qr.make_image()
+            buff = StringIO()
+            img.save(buff)
+            buff.seek(0)
+            s = buff.read()
+            s = s.encode('base64')
 
-            if config.get('disqus', 0):
-                id = config['sourcefile'].split('/')[-1].split('.')
-                id = '.'.join(id[0:-1])
-                ret.append(disqus % {'subject': SUBJECT,
-                                     'id': id,
-                                     'url': 'http://zouyesheng.com/%s.html' % id})
+            s = 'data:image/png;base64,' + s
+            ret.append(qr_template % s)
 
-            if config.get('mathjax', 0):
-                ret.append(math)
-
-            if config.get('google-analytics', 0):
-                ret.append(google)
-
-            if config.get('qr', ''):
-                import qrcode
-                from cStringIO import StringIO
-                url = config.get('qr')
-                qr = qrcode.QRCode(version=1,
-                                   error_correction=qrcode.constants.ERROR_CORRECT_L,
-                                   box_size=5,
-                                   border=2)
-                qr.add_data(url)
-                qr.make(fit=True)
-                img = qr.make_image()
-                buff = StringIO()
-                img.save(buff)
-                buff.seek(0)
-                s = buff.read()
-                s = s.encode('base64')
-
-                s = 'data:image/png;base64,' + s
-                ret.append(qr_template % s)
-
-            import datetime
-            ret.append(copyright % datetime.date.today().year)
+        import datetime
+        ret.append(copyright % datetime.date.today().year)
 
 
     # Not using TARGET_NAMES because it's i18n'ed.
