@@ -182,7 +182,7 @@ syn keyword t2tTargets    contained pmw adoc art
 syn match t2tConfigString contained +"[^"]*"\|'[^']*'+
 syn match t2tConfigValue  contained ':.*'ms=s+1 contains=t2tConfigString
 syn match t2tConfigKey    contained '^%![^:]\+:' contains=t2tTargets
-syn match t2tConfigLine   contained "^%!\s*\(qr\|encoding\|style\|preproc\|postproc\|includeconf\|options\)\s*\((\s*\(\|txt\|html\|xhtml\|sgml\|tex\|lout\|mgp\|man\|moin\|pm6\|wiki\|gwiki\|doku\|dbk\|creole\|pmw\|adoc\|art\)\s*)\)\=\s*:\s*\S.*" contains=t2tConfigKey,t2tConfigValue,t2tConfigString
+syn match t2tConfigLine   contained "^%!\s*\(format\|qr\|encoding\|style\|preproc\|postproc\|includeconf\|options\)\s*\((\s*\(\|txt\|html\|xhtml\|sgml\|tex\|lout\|mgp\|man\|moin\|pm6\|wiki\|gwiki\|doku\|dbk\|creole\|pmw\|adoc\|art\)\s*)\)\=\s*:\s*\S.*" contains=t2tConfigKey,t2tConfigValue,t2tConfigString
 syn match t2tConfigLine   contained "^%!\s*target\s*:\s*\S.*" contains=t2tConfigKey,t2tTargets
 syn match t2tConfigLine   contained "^%!\s*guicolors\s*:\s*\(\S\+\s\+\)\{3}\S\+\s*$" contains=t2tConfigKey,t2tTargets
 
