@@ -702,10 +702,10 @@ def getTags(config):
     'html': {
         'paragraphOpen'        : '<P STYLE="line-height: 1.8em; margin: 25px auto; word-break: break-word; word-wrap: break-word;">'            ,
         'paragraphClose'       : '</P>'           ,
-        'title1'               : '~A~<H1 STYLE="font-size: 22px; margin: 35px auto; border-bottom: 1px solid gray; padding-top: 5px; padding-bottom: 5px;">\a</H1>' ,
+        'title1'               : '~A~<H1 STYLE="font-size: 20px; margin: 35px auto; border-bottom: 1px solid gray; padding-top: 5px; padding-bottom: 5px;">\a</H1>' ,
 
-        'title2'               : '~A~<H2 STYLE="font-size: 20px; margin: 30px auto;">\a</H2>' ,
-        'title3'               : '~A~<H3 STYLE="font-size: 18px; margin: 25px auto;">\a</H3>' ,
+        'title2'               : '~A~<H2 STYLE="font-size: 18px; margin: 30px auto;">\a</H2>' ,
+        'title3'               : '~A~<H3 STYLE="font-size: 16px; margin: 25px auto;">\a</H3>' ,
         'title4'               : '~A~<H4>\a</H4>' ,
         'title5'               : '~A~<H5>\a</H5>' ,
         'anchor'               : '<A NAME="\a"></A>\n',
