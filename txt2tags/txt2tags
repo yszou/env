@@ -4957,7 +4957,7 @@ def doFooter(config):
     '''
 
     qr_template = '''
-<div style="position: absolute; right: 30px; top: 30px;"><img style="border: 1px solid gray;" src="%s" title="本文二维码网址" /></div>
+<div id="qr" style="position: absolute; right: 30px; top: 30px;"><img style="border: 1px solid gray;" src="%s" title="本文二维码网址" /></div>
     '''
 
     math = '''
@@ -5091,7 +5091,43 @@ $(function(){
         bind_scroll();
     }
 
-    create_toc();
+    function is_mobile(){
+        if(window.devicePixelRatio > 1 || navigator.userAgent.indexOf('Android') >= 0){
+            return true;
+        }
+        return false;
+    }
+
+    function mobile_meta(){
+        var ua=navigator.userAgent;
+        var meta = '';
+        if(ua.indexOf('Android')!=-1){
+            var isUC= /UC /.test(ua) || /UCBrowser/.test(ua) || /baidubrowser/.test(ua)|| /qq/i.test(ua);
+            if(isUC){
+                meta='<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,target-densitydpi=device-dpi,user-scalable=no" />';
+            } else {
+                meta='<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5,target-densitydpi=320,user-scalable=no" />';
+            }
+        }else{
+            meta='<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5,target-densitydpi=device-dpi,user-scalable=no,minimal-ui" />';
+        }
+        $('head').append(meta);
+    }
+
+    function mobile_adjust(){
+        $('body.z > .content').css({ width: '100%' });
+        $('#qr').hide();
+        $('#disqus_thread').css({ width: '100%' });
+        $('body.z').css({ letterSpacing: 0 });
+        $('body.z p').css({ lineHeight: '1.3em' });
+    }
+
+    if(is_mobile()){
+        mobile_meta();
+        mobile_adjust();
+    } else {
+        create_toc();
+    }
 });
 </script>
     '''
