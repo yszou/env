@@ -710,7 +710,7 @@ def getTags(config):
         'title5'               : '~A~<H5>\a</H5>' ,
         'anchor'               : '<A NAME="\a"></A>\n',
         #'blockVerbOpen'        : '<PRE STYLE=" white-space: pre-wrap; word-wrap: break-word; border-left: 5px solid #999; font-size: small; line-height: 1.5em; padding: 5px;" class="lang-\a">'          ,
-        'blockVerbOpen'        : '<PRE STYLE="white-space: pre; font-size: 10px; line-height: 1.5em; margin-left: 15px; letter-spacing: 0;" class="lang-\a">'          ,
+        'blockVerbOpen'        : '<PRE STYLE="white-space: pre; font-size: 12px; line-height: 1.5em; margin-left: 15px; letter-spacing: 0;" class="lang-\a">'          ,
         'blockVerbClose'       : '</PRE>'         ,
         'blockQuoteOpen'       : '''<PRE CLASS="quote" STYLE="white-space: pre-wrap; border: 1px dashed gray; padding: 20px; font-family: 'Microsoft YaHei','WenQuanYi Micro Hei',SimHei,tahoma,sans-serif;">'''   ,
         'blockQuoteClose'      : '</PRE>'  ,
