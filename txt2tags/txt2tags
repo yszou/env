@@ -4211,14 +4211,14 @@ class BlockMaster:
                 background_color = 'white'
 
                 styles = {
-                    Comment.Multiline:              'italic #999988',
+                    Comment.Multiline:              '#999988',
                     Comment.Preproc:                'bold #999999',
-                    Comment.Single:                 'italic #999988',
-                    Comment.Special:                'bold italic #999999',
-                    Comment:                        'italic #999988',
+                    Comment.Single:                 '#999988',
+                    Comment.Special:                'bold #999999',
+                    Comment:                        '#999988',
                     Error:                          'bg:#e3d2d2 #a61717',
                     Generic.Deleted:                'bg:#ffdddd #000000',
-                    Generic.Emph:                   'italic #000000',
+                    Generic.Emph:                   '#000000',
                     Generic.Error:                  '#aa0000',
                     Generic.Heading:                '#999999',
                     Generic.Inserted:               'bg:#ddffdd #000000',
