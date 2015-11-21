@@ -19,6 +19,7 @@ RUN apt-get install -y \
     language-pack-en-base \
     language-pack-zh-hans \
     man \
+    sudo \
     gcc \
     g++ \
     zlib1g-dev \
