@@ -9,8 +9,8 @@ noremap <F6> :!gvim /home/zys/temp/<C-R>=expand("%:t:r")<CR>.tex<CR><CR>
 inoremap <M-o> <C-R>=<SID>FormatText('**')<CR>
 inoremap <M-p> <C-R>=<SID>FormatText('``')<CR>
 inoremap <M-i> <C-R>=<SID>FormatText('*')<CR>
-inoremap <M-=> <C-R>=<SID>FormatText('#')<CR>
-inoremap <M--> <C-R>=<SID>FormatText('##')<CR>
+inoremap <M-=> <C-R>=<SID>FormatText('# ')<CR>
+inoremap <M--> <C-R>=<SID>FormatText('## ')<CR>
 inoremap <Leader>= ========================================================
 inoremap <Leader>- --------------------------------------------------------
 inoremap <Leader>` ```<CR><CR>```<CR><++><UP><UP>
