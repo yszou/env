@@ -4968,8 +4968,15 @@ def doFooter(config):
     },
     styles: {
         '.MathJax': {
-            'color': '#6D3333',
-        }
+            'color': '#6D3333'
+        },
+        '.MathJax_SVG': {
+            'outline': 'none'
+        },
+        ".MathJax_SVG svg > g, .MathJax_SVG_Display svg > g":  { 
+          fill: "#6D3333", 
+          stroke: "#333" 
+        } 
     },
     tex2jax: {
         inlineMath: [ ['$','$'], ]
@@ -4983,7 +4990,7 @@ def doFooter(config):
     }});
 </script>
 <script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG">
 </script>
     '''
 
