@@ -2267,6 +2267,8 @@ def getRegexes():
     
     # Image
     bank['img'] = re.compile(patt_img, re.L+re.I)
+    # ZYS
+    bank['markdown_img'] = re.compile(r'!\[(?P<alt>.*?)\]\((?P<url>.*?)\)', re.L+re.I)
     
     # Special things
     bank['special'] = re.compile(r'^%!\s*')
@@ -3207,12 +3209,14 @@ class MaskMaster:
         self.rawmask   = 'vvvRAWvvv'
         self.taggedmask= 'vvvTAGGEDvvv'
         self.tocmask   = 'vvvTOCvvv'
+        self.markdown_image = 'vvvMARKDOWN_IMAGEvvv'
         self.macroman  = MacroMaster()
         self.reset()
     
     def reset(self):
         self.linkbank = []
         self.monobank = []
+        self.imagebank = []
         self.macrobank = []
         self.rawbank = []
         self.taggedbank = []
@@ -3265,6 +3269,13 @@ class MaskMaster:
             else:
                 break
             
+        #ZYS, markdown 格式的插图
+        while regex['markdown_img'].search(line):
+            m = regex['markdown_img'].search(line)
+            self.imagebank.append((m.group('alt'), m.group('url')))
+            line = regex['markdown_img'].sub(self.markdown_image,line,1)
+
+
         # Protect macros
         while regex['macros'].search(line):
             txt = regex['macros'].search(line).group()
@@ -3325,6 +3336,38 @@ class MaskMaster:
         for mono in self.monobank:
             open_,close = TAGS['fontMonoOpen'],TAGS['fontMonoClose']
             line = line.replace(self.monomask, open_+mono+close, 1)
+
+        # Expand image
+        # 参照parse_images 处理
+        for alt, url in self.imagebank:
+            tag = TAGS['img']
+            txt = url
+
+            if rules['imgalignable']:
+                align_name = 'Center'
+
+                # The align is a full tag, or part of the image tag (~A~)
+                if TAGS['imgAlign'+align_name]:
+                    tag = TAGS['imgAlign'+align_name]
+                else:
+                    align_tag = TAGS['_imgAlign'+align_name]
+                    tag = regex['_imgAlign'].sub(align_tag, tag, 1)
+
+                # Dirty fix to allow centered solo images
+                if TARGET in ('html','xhtml', 'enml'):
+                    rest = regex['img'].sub('',line,1)
+                    if re.match('^\s+$', rest):
+                        tag = "<center>%s</center>" %tag
+
+            if TARGET == 'tex':
+                tag = re.sub(r'\\b',r'\\\\b',tag)
+                txt = txt.replace('_', 'vvvvTexUndervvvv')
+
+            tag = tag.replace('[', 'vvvvEscapeSquareBracketvvvv')
+            result = regex['x'].sub(txt,tag,1)
+            result = result.replace('vvvvEscapeSquareBracketvvvv','[')
+            line = line.replace(self.markdown_image, result, 1)
+
         
         # Expand raw
         for raw in self.rawbank:
