@@ -3823,6 +3823,15 @@ class TableMaster:
     def dump(self):
         open_ = self._get_open_tag()
         rows  = self.rows
+
+        # ZYS
+        # markdown 风格的表格，第二排的横线处理
+        if len(rows) >= 2 and rows[1]['cells'][0].startswith('<s>'):
+            rows[1] = rows[0]
+            rows.pop(0)
+            rows[0]['title'] = 1
+
+
         close = TAGS['tableClose']
         
         rowopen     = TAGS['tableRowOpen']
