@@ -29,4 +29,5 @@ sudo pip install -vv pylibmc
 sudo pip install -vv pika
 sudo pip install -vv xlrd
 sudo pip install -vv M2Crypto
+sudo pip install -vv qrcode
 
