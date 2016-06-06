@@ -147,7 +147,7 @@ FLAGS    = {'headers'    :1 , 'enum-title' :0 , 'mask-email' :0 ,
             'css-sugar'  :0 , 'css-suggar' :0 , 'css-inside' :0 ,
             'quiet'      :0 , 'slides'     :0 ,
             'mathjax'    :0 , 'google-analytics': 0,
-            'disqus'     :0}
+            'disqus'     :0 , 'cnzz': 0}
 OPTIONS  = {'target'     :'', 'toc-level'  :3 , 'style'      :'',
             'infile'     :'', 'outfile'    :'', 'encoding'   :'',
             'config-file':'', 'split'      :0 , 'lang'       :'',
@@ -5000,6 +5000,10 @@ ga('send', 'pageview');
 </script>
     '''
 
+    cnzz = '''
+<script src="https://s11.cnzz.com/z_stat.php?id=1259459872&web_id=1259459872" language="JavaScript"></script>
+    '''
+
     copyright = '''
 <div style="font-size: 10px; text-align: right; margin-top: 50px; letter-spacing: 0;">
 &copy;2010-%s zouyesheng.com All rights reserved. Powered by <a href="https://github.com/" target="_blank">GitHub</a> , <a href="http://txt2tags.org/" target="_blank">txt2tags</a> , <a href="https://www.mathjax.org/" target="_blank">MathJax</a>
@@ -5364,6 +5368,9 @@ $(function(){
 
             if config.get('google-analytics', 0):
                 ret.append(google)
+
+            if config.get('cnzz', 0):
+                ret.append(cnzz)
 
             if config.get('qr', ''):
                 import qrcode
