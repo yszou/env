@@ -5001,7 +5001,9 @@ ga('send', 'pageview');
     '''
 
     cnzz = '''
+<div style="display: none;">
 <script src="https://s11.cnzz.com/z_stat.php?id=1259459872&web_id=1259459872" language="JavaScript"></script>
+</div>
     '''
 
     copyright = '''
