@@ -11,6 +11,7 @@ RUN mkdir -p /root/.ssh && \
     rm -rf /tmp/pubkey
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y openssh-server && \
     mkdir -p /var/run/sshd && \
     sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
@@ -55,7 +56,13 @@ RUN apt-get install -y \
     telnet \
     dnsutils \
     libmemcached-dev \
-    libpcre3-dev
+    libpcre3-dev \
+    libevent1-dev \
+    unzip \
+    cmake \
+    libncurses5-dev \
+    dpkg-dev
+
 
 RUN rm -rf /usr/bin/python && \
     ln -s /usr/bin/python2.7 /usr/bin/python
@@ -81,3 +88,4 @@ RUN rm -rf ~/.ssh/id_rsa && \
     ssh-keygen -t rsa -f /root/.ssh/id_rsa -N '' -q
 
 CMD ["bash", "/root/run"]
+

@@ -1,6 +1,6 @@
 supervisor
 Pillow
-#lxml==3.3.6
+lxml
 MySQL-python
 psycopg2
 
@@ -11,18 +11,21 @@ SQLAlchemy
 Pygments
 Django
 
-#cffi
-#cryptography
-#pycparser
-#pycrypto
-#paramiko
-#Jinja2
-#ansible
+cffi
+cryptography
+pycparser
+pycrypto
+paramiko
+Jinja2
+ansible
 
-#zope.interface
-#Twisted
-#Scrapy
+zope.interface
+Twisted
+Scrapy
 
 pylibmc
 pika
 xlrd
+
+qrcode
+
