@@ -26,6 +26,7 @@ Scrapy
 pylibmc
 pika
 xlrd
+xlwt
 
 qrcode
 
