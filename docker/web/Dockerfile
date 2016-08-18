@@ -12,6 +12,8 @@ RUN cd /root/src/nginx-1.10.1 && \
     make && \
     make install
 
+RUN useradd -m app
+
 RUN rm -rf ~/.ssh/id_rsa && \
     rm -rf ~/.ssh/id_rsa.pub && \
     ssh-keygen -t rsa -f /root/.ssh/id_rsa -N '' -q
