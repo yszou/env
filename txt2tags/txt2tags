@@ -229,7 +229,7 @@ STDIN = STDOUT = '-'
 MODULEIN = MODULEOUT = '-module-'
 ESCCHAR   = '\x00'
 SEPARATOR = '\x01'
-LISTNAMES = {'-':'list', '+':'numlist', ':':'deflist', '0': 'numlist'} #ZYS
+LISTNAMES = {'-':'list', '+':'numlist', ':':'deflist'} #ZYS
 LINEBREAK = {'default':'\n', 'win':'\r\n', 'mac':'\r'}
 
 # Platform specific settings
@@ -2162,7 +2162,7 @@ def getRegexes():
     'list':
         re.compile(r'^( *)(-) (?=[^ ])'),
     'numlist':
-        re.compile(r'^( *)([+0]) (?=[^ ])'),
+        re.compile(r'^( *)(\+) (?=[^ ])'),
     'deflist':
         re.compile(r'^( *)(:) (.*)$'),
     'listclose':
