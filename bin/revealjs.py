@@ -38,7 +38,9 @@ TEMPLATE = u'''
           .reveal h1 { text-shadow: 2px 2px 2px gray; }
           .reveal p { text-align: left; font-size: 0.8em; line-height: 1.3em; }
           .reveal li { font-size: 0.8em; margin: 0.5em 0; }
-          .reveal code { color: #64fb64; }
+          .reveal code { color: #52E852; }
+          .reveal strong, .reveal b { color: #FF1E1E; font-weight: normal; }
+          .reveal em { color: #F9843E; font-style: normal; }
 
         </style>
 	</head>
