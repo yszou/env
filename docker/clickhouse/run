@@ -1,0 +1,5 @@
+#!/bin/bash
+
+service clickhouse-server start && \
+exec /usr/sbin/sshd -D
+
