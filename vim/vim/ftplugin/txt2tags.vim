@@ -1,10 +1,12 @@
 set textwidth=0
 
-noremap <F2> :!txt2tags -t xhtml --toc-level=3 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.html <C-R>=expand("%:p")<CR> <Enter>
+noremap <F2> :!python /home/zys/bin/txt2tags -t xhtml --toc-level=3 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.html <C-R>=expand("%:p")<CR> <Enter>
 noremap <F3> :!firefox /home/zys/temp/<C-R>=expand("%:t:r").".html"<CR><Enter><Enter>
 noremap <F4> :!google-chrome /home/zys/temp/<C-R>=expand("%:t:r").".html"<CR><Enter><Enter>
 noremap <F5> :!txt2tags -t tex --toc-level=2 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.tex <C-R>=expand("%:p")<CR> <Enter>
 noremap <F6> :!gvim /home/zys/temp/<C-R>=expand("%:t:r")<CR>.tex<CR><CR>
+noremap <F7> :!python /home/zys/bin/revealjs.py <C-R>=expand("%:p")<CR> /home/zys/temp/<C-R>=expand("%:t:r")<CR>.revealjs.html  <Enter>
+noremap <F8> :!google-chrome /home/zys/temp/<C-R>=expand("%:t:r").".revealjs.html"<CR><Enter><Enter>
 
 inoremap <M-o> <C-R>=<SID>FormatText('**')<CR>
 inoremap <M-p> <C-R>=<SID>FormatText('``')<CR>
