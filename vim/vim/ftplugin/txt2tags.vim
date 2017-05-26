@@ -1,18 +1,16 @@
 set textwidth=0
 
-noremap <F2> :!python /home/zys/bin/txt2tags -t xhtml --toc-level=3 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.html <C-R>=expand("%:p")<CR> <Enter>
+noremap <F2> :!txt2tags -t xhtml --toc-level=3 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.html <C-R>=expand("%:p")<CR> <Enter>
 noremap <F3> :!firefox /home/zys/temp/<C-R>=expand("%:t:r").".html"<CR><Enter><Enter>
 noremap <F4> :!google-chrome /home/zys/temp/<C-R>=expand("%:t:r").".html"<CR><Enter><Enter>
 noremap <F5> :!txt2tags -t tex --toc-level=2 --encoding=utf-8 --enum-title --mask-email -o /home/zys/temp/<C-R>=expand("%:t:r")<CR>.tex <C-R>=expand("%:p")<CR> <Enter>
 noremap <F6> :!gvim /home/zys/temp/<C-R>=expand("%:t:r")<CR>.tex<CR><CR>
-noremap <F7> :!python /home/zys/bin/revealjs.py <C-R>=expand("%:p")<CR> /home/zys/temp/<C-R>=expand("%:t:r")<CR>.revealjs.html  <Enter>
-noremap <F8> :!google-chrome /home/zys/temp/<C-R>=expand("%:t:r").".revealjs.html"<CR><Enter><Enter>
 
 inoremap <M-o> <C-R>=<SID>FormatText('**')<CR>
 inoremap <M-p> <C-R>=<SID>FormatText('``')<CR>
 inoremap <M-i> <C-R>=<SID>FormatText('*')<CR>
-inoremap <M-=> <C-R>=<SID>FormatText('# ')<CR>
-inoremap <M--> <C-R>=<SID>FormatText('## ')<CR>
+inoremap <M-=> <C-R>=<SID>FormatTextToStart('# ')<CR>
+inoremap <M--> <C-R>=<SID>FormatTextToStart('## ')<CR>
 inoremap <Leader>= ========================================================
 inoremap <Leader>- --------------------------------------------------------
 inoremap <Leader>` ```<CR><CR>```<CR><++><UP><UP>
@@ -33,6 +31,23 @@ function! <SID>FormatText(mark)
     let lineToCurrent = line[:columnNum - 2]
     let mark = a:mark
     call setline(lineNum, preSpace . s:getResult(lineToCurrent, mark) . line[columnNum - 1:])
+    call cursor(lineNum, columnNum + strlen(getline('.')) - strlen(line))
+    "let a = inputdialog(line)
+    return ''
+endfunction
+
+function! <SID>FormatTextToStart(mark)
+    let columnNum = col('.')
+    if columnNum == 1
+        return ''
+    endif
+    let lineNum = line('.')
+    let line = getline('.')
+    "前置的空格在处理时会被忽略,所以最后要单独加上
+    let preSpace = matchstr(line, '^\s\+')
+    let lineToCurrent = line[:columnNum - 2]
+    let mark = a:mark
+    call setline(lineNum, preSpace . mark . line . s:reverseStr(mark))
     call cursor(lineNum, columnNum + strlen(getline('.')) - strlen(line))
     "let a = inputdialog(line)
     return ''
