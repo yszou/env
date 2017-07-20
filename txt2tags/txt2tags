@@ -355,6 +355,7 @@ Fake template to respect the general process.
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="_favicon.ico" />
     <meta charset="UTF-8" />
     <title>%(HEADER1)s - YS.Zou</title>
     <meta name="generator" content="http://txt2tags.org" />
