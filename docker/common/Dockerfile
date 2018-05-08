@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run
@@ -81,7 +81,7 @@ RUN mkdir -p /root/src && \
 
 RUN sed -i 's/\/root:\/bin\/bash/\/root:\/bin\/zsh/' /etc/passwd
 
-RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN rm -rf ~/.ssh/id_rsa && \
     rm -rf ~/.ssh/id_rsa.pub && \
