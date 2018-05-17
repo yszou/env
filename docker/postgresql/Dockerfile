@@ -2,10 +2,10 @@ FROM common
 MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run
-ADD postgresql-9.5.0.tar.gz /root/src
+ADD postgresql-10.4.tar.gz /root/src
 
 RUN apt-get upgrade -y
-RUN cd /root/src/postgresql-9.5.0 && \
+RUN cd /root/src/postgresql-10.4 && \
     ./configure --prefix=/opt/postgresql --with-openssl --with-python && \
     make && \
     make install
