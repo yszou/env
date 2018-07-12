@@ -9,7 +9,7 @@ tornado
 
 SQLAlchemy
 Pygments
-Django
+Django<2
 
 cffi
 cryptography

@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run
@@ -25,8 +25,7 @@ RUN apt-get install -y \
     g++ \
     zlib1g-dev \
     libjpeg-dev \
-    libopenjpeg-dev \
-    libpng12-dev \
+    libpng-dev \
     libgif-dev \
     libfreetype6-dev \
     libtiff-dev \

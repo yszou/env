@@ -7,7 +7,8 @@ ADD requirements /root/requirements
 RUN apt-get update && \
     apt-get upgrade -y
 
-RUN pip install -vv -i http://mirrors.aliyun.com/pypi/simple/ -r /root/requirements
+RUN pip install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com pip --upgrade
+RUN pip install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com -r /root/requirements
 
 RUN rm -rf ~/.ssh/id_rsa && \
     rm -rf ~/.ssh/id_rsa.pub && \
