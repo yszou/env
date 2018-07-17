@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get upgrade -y
 
 RUN cd /root/src/nginx-1.14.0 && \
-    ./configure --prefix=/opt/nginx && \
+    ./configure --prefix=/opt/nginx --with-stream && \
     make && \
     make install
 
