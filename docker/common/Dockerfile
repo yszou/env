@@ -60,7 +60,8 @@ RUN apt-get install -y \
     unzip \
     cmake \
     libncurses5-dev \
-    dpkg-dev
+    dpkg-dev \
+    net-tools
 
 
 RUN rm -rf /usr/bin/python && \
