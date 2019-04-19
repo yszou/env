@@ -44,10 +44,6 @@ sudo apt-get install -y \
     kdenlive \
     fcitx-rime \
     librime-data-wubi \
-    autoconf
-
-
-
-
-
+    autoconf \
+    shutter
 
