@@ -4351,7 +4351,8 @@ class BlockMaster:
                                                   shell=True,
                                                   stdin=subprocess.PIPE,
                                                   stdout=subprocess.PIPE).communicate(code)
-                code = '<div style="text-align: center;">' + stdout[156:] + '</div>'
+                r = re.sub(r'<\?xml.*?\?>', '', stdout)
+                code = '<div style="text-align: center;">' + r + '</div>'
             else:
                 code = highlight(code, lexer, formatter).encode('utf8')
 
