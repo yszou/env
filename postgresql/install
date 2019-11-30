@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ ! -f "postgresql-12.1.tar.gz" ]; then
+    wget https://ftp.postgresql.org/pub/source/v12.1/postgresql-12.1.tar.gz
+fi
+tar -xzf postgresql-12.1.tar.gz
+cd postgresql-12.1
+sudo apt-get install -y python-dev
+./configure --prefix=/opt/postgresql --with-python
+make -j4 && sudo make install
+/opt/postgresql/bin/initdb -D /home/zys/pg_data
+#sudo mkdir -p /var/run/postgresql
+#sudo chown zys:zys /var/run/postgresql
+cp ./postgresql.conf /home/zys/pg_data/
+/opt/postgresql/bin/pg_ctl -D /home/zys/pg_data -l /home/zys/pg_log start
+/opt/postgresql/bin/createuser -s app
+/opt/postgresql/bin/createdb -O zys zys
+/opt/postgresql/bin/createdb -O app test
+
+
