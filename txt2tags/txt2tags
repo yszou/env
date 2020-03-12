@@ -4785,6 +4785,11 @@ def toc_tagger(toc, config):
         fakeconf['css-sugar']  = 0
         fakeconf['art-no-title']  = 1  # needed for --toc and --slides together, avoids slide title before TOC
         ret,foo = convert(toc, fakeconf)
+
+        # ZYS
+        if config.get('target', '') == 'xhtml':
+            ret = map(lambda s: s.replace('_blank', '_self'), ret)
+
         if config.get('target', '') == 'xhtml':
             ret.insert(0, '<div class="toc">')
             ret.append('</div>')
