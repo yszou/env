@@ -4,4 +4,4 @@ if [ ! -f "nginx-1.16.1.tar.gz" ]; then
     wget http://nginx.org/download/nginx-1.16.1.tar.gz
 fi
 
-docker build -t web3 .
+docker build -t web .
