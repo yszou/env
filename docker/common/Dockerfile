@@ -63,6 +63,21 @@ RUN apt-get install -y \
     dpkg-dev \
     net-tools
 
+RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com pip --upgrade
+RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com \
+    pillow \
+    lxml \
+    psycopg2-binary \
+    tornado \
+    sqlalchemy \
+    pygments \
+    cffi \
+    pycrypto \
+    ansible \
+    xlrd \
+    xlwt \
+    qrcode
+
 
 ENV HOME /root
 RUN mkdir -p /root/volumn
