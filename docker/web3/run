@@ -1,4 +1,0 @@
-#!/bin/bash
-
-/opt/nginx/sbin/nginx && \
-exec /usr/sbin/sshd -D
