@@ -38,9 +38,9 @@ RUN apt-get install -y \
     libyaml-dev \
     libffi-dev \
     libreadline6-dev \
-    python2.7 \
-    python-dev \
-    python-pip \
+    libpython3-dev \
+    python3-dev \
+    python3-pip \
     vim \
     git \
     curl \
@@ -63,9 +63,6 @@ RUN apt-get install -y \
     dpkg-dev \
     net-tools
 
-
-RUN rm -rf /usr/bin/python && \
-    ln -s /usr/bin/python2.7 /usr/bin/python
 
 ENV HOME /root
 RUN mkdir -p /root/volumn
