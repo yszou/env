@@ -1,2 +1,2 @@
-noremap <F2> :!guile -s <C-R>=expand("%:p")<CR><Enter>
+noremap <F2> :!runscheme.sh <C-R>=expand("%:p")<CR><Enter>
 
