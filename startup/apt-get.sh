@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get install -y \
-    python-dev \
+    python3-dev \
     libssl-dev \
     zlib1g-dev \
     libjpeg-dev \
@@ -24,7 +24,7 @@ sudo apt-get install -y \
     zsh \
     vim-gtk \
     git \
-    python-pip \
+    python3-pip \
     swig \
     imagemagick \
     curl \
@@ -38,12 +38,10 @@ sudo apt-get install -y \
     xfonts-wqy \
     gimp \
     audacity \
-    gtk-recordmydesktop \
     mplayer \
     kmplayer \
     kdenlive \
     fcitx-rime \
     librime-data-wubi \
-    autoconf \
-    shutter
+    autoconf
 

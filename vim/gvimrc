@@ -1,6 +1,5 @@
-if has('gui_gtk2')
-  "set guifont=Bitstream\ Vera\ Sans\ Mono\ 15
-  set guifont=Monaco\ 16
+if has('gui_gtk3')
+  set guifont=DejaVuSansMono\ 16
   set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 15
 else
   set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
