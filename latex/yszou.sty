@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage{bbding}
+\usepackage{color}
 
 \usepackage{fontspec,xunicode}
 \defaultfontfeatures{Mapping=tex-text} %如果没有它，会有一些 tex 特殊字符无法正常使用，比如连字符。
@@ -31,3 +32,9 @@
 \titleformat{\section}[block]{\LARGE\bfseries\sffamily}{\arabic{section}}{1em}{}[]
 \titleformat{\subsection}[block]{\large\bfseries\sffamily}{\arabic{section}.\arabic{subsection}}{0.8em}{}[]
 
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
