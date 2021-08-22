@@ -1,0 +1,33 @@
+\ProvidesPackage{chinese}
+\usepackage[utf8]{inputenc}
+\usepackage[PunctStyle=kaiming]{xeCJK}
+\setlength{\parindent}{0em}
+\renewcommand{\baselinestretch}{1.25}
+\setlength{\parskip}{0.5em}
+
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{bbding}
+
+\usepackage{fontspec,xunicode}
+\defaultfontfeatures{Mapping=tex-text} %如果没有它，会有一些 tex 特殊字符无法正常使用，比如连字符。
+
+% 中文断行
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+
+%设置文档正文字体为宋体
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setmonofont{Noto Sans Mono}
+
+%页面尺寸
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+
+%标题样式
+\usepackage{titlesec}
+\titleformat{\chapter}[block]{\Huge\bfseries\sffamily}{\SixFlowerAlternate}{0em}{}[]
+\titleformat{\section}[block]{\LARGE\bfseries\sffamily}{\arabic{section}}{1em}{}[]
+\titleformat{\subsection}[block]{\large\bfseries\sffamily}{\arabic{section}.\arabic{subsection}}{0.8em}{}[]
+
