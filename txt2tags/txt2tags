@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python2
 # -*- coding: utf-8 -*-
 
 # txt2tags - generic text conversion tool
@@ -146,7 +146,7 @@ FLAGS    = {'headers'    :1 , 'enum-title' :0 , 'mask-email' :0 ,
             'toc-only'   :0 , 'toc'        :0 , 'rc'         :1 ,
             'css-sugar'  :0 , 'css-suggar' :0 , 'css-inside' :0 ,
             'quiet'      :0 , 'slides'     :0 ,
-            'mathjax'    :0 , 'google-analytics': 0,
+            'mathjax'    :0 , 'google-analytics': 0, 'yandex': 0,
             'disqus'     :0 , 'cnzz': 0}
 OPTIONS  = {'target'     :'', 'toc-level'  :3 , 'style'      :'',
             'infile'     :'', 'outfile'    :'', 'encoding'   :'',
@@ -5007,6 +5007,22 @@ ga('send', 'pageview');
 </script>
     '''
 
+    yandex = '''
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(88114627, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/88114627" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    '''
+
     cnzz = '''
 <div style="display: none;">
 <script src="https://s11.cnzz.com/z_stat.php?id=1259459872&web_id=1259459872" language="JavaScript"></script>
@@ -5377,6 +5393,9 @@ $(function(){
 
             if config.get('google-analytics', 0):
                 ret.append(google)
+
+            if config.get('yandex', 0):
+                ret.append(yandex)
 
             if config.get('cnzz', 0):
                 ret.append(cnzz)
