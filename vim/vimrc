@@ -1,3 +1,15 @@
+
+"Vundle的配置必须先关闭它们
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'wlangstroth/vim-racket'
+call vundle#end()
+
+
 "配色方案
 if (has("gui_running"))
     "colo blue
