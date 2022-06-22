@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER YS.Zou <yeshengzou@gmail.com>
 
 ADD run /root/run
-ADD sources.list /etc/apt/sources.list
+#ADD sources.list /etc/apt/sources.list
 ADD id_rsa.pub /tmp/pubkey
 ADD locale /etc/default/locale
 
@@ -63,8 +63,10 @@ RUN apt-get install -y \
     dpkg-dev \
     net-tools
 
-RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com pip --upgrade
-RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com \
+#RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com pip --upgrade
+#RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com \
+RUN pip3 install pip --upgrade
+RUN pip3 install \
     pillow \
     lxml \
     psycopg2-binary \
@@ -73,7 +75,7 @@ RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirror
     pygments \
     cffi \
     pycrypto \
-    ansible \
+    #ansible \
     xlrd \
     xlwt \
     qrcode
@@ -93,7 +95,6 @@ RUN mkdir -p /root/src && \
 
 RUN sed -i 's/\/root:\/bin\/bash/\/root:\/bin\/zsh/' /etc/passwd
 
-#RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN rm -rf ~/.ssh/id_rsa && \
     rm -rf ~/.ssh/id_rsa.pub && \
